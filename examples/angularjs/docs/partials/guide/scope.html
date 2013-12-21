@@ -16,8 +16,10 @@ model mutations.</p>
 propagate any model changes through the system into the view from outside of the &quot;Angular
 realm&quot; (controllers, services, Angular event handlers).</p>
 </li>
-<li><p>Scopes can be nested to isolate application components while providing access to shared model
-properties. A scope (prototypically) inherits properties from its parent scope.</p>
+<li><p>Scopes can be nested to limit access to the properties of application components while providing
+access to shared model properties. Nested scopes are either &quot;child scopes&quot; or &quot;isolate scopes&quot;.
+A &quot;child scope&quot; (prototypically) inherits properties from its parent scope. An &quot;isolate scope&quot;
+does not. See <a href="guide/directive#creating-custom-directives_demo_isolating-the-scope-of-a-directive">isolated     scopes</a> for more information.</p>
 </li>
 <li><p>Scopes provide context against which <a href="guide/expression">expressions</a> are evaluated. For
 example <code>{{username}}</code> expression is meaningless, unless it is evaluated against a specific
@@ -34,10 +36,10 @@ arrangement isolates the controller from the directive as well as from DOM. This
 point since it makes the controllers view agnostic, which greatly improves the testing story of
 the applications.</p>
 <h3 id="what-are-scopes_source">Source</h3>
-<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-270" source-edit-css="" source-edit-js="script.js-269" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-280" source-edit-css="" source-edit-js="script.js-279" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-270" ng-html-wrap=" angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-270">
+<pre class="prettyprint linenums" ng-set-text="index.html-280" ng-html-wrap=" angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-280">
     <div ng-controller="MyController">
       Your name:
         <input type="text" ng-model="username">
@@ -48,8 +50,8 @@ the applications.</p>
   </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-269"></pre>
-<script type="text/ng-template" id="script.js-269">
+<pre class="prettyprint linenums" ng-set-text="script.js-279"></pre>
+<script type="text/ng-template" id="script.js-279">
     function MyController($scope) {
       $scope.username = 'World';
 
@@ -60,7 +62,7 @@ the applications.</p>
   </script>
 </div>
 </div><h3 id="what-are-scopes_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="" ng-set-html="index.html-270" ng-eval-javascript="script.js-269"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="" ng-set-html="index.html-280" ng-eval-javascript="script.js-279"></div>
 <p>In the above example notice that the <code>MyController</code> assigns <code>World</code> to the <code>username</code> property of
 the scope. The scope then notifies the <code>input</code> of the assignment, which then renders the input
 with username pre-filled. This demonstrates how a controller can write data into the scope.</p>
@@ -110,10 +112,10 @@ inheritance, and child scopes prototypically inherit from their parents.</p>
 <p>This example illustrates scopes in application, and prototypical inheritance of properties. The example is followed by
 a diagram depicting the scope boundaries.</p>
 <h3 id="what-are-scopes_source">Source</h3>
-<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-271" source-edit-css="style.css-273" source-edit-js="script.js-272" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-281" source-edit-css="style.css-283" source-edit-js="script.js-282" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-271" ng-html-wrap=" angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-271">
+<pre class="prettyprint linenums" ng-set-text="index.html-281" ng-html-wrap=" angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-281">
   <div class="show-scope-demo">
     <div ng-controller="GreetCtrl">
       Hello {{name}}!
@@ -127,8 +129,8 @@ a diagram depicting the scope boundaries.</p>
   </script>
 </div>
 <div class="tab-pane" title="style.css">
-<pre class="prettyprint linenums" ng-set-text="style.css-273"></pre>
-<style type="text/css" id="style.css-273">
+<pre class="prettyprint linenums" ng-set-text="style.css-283"></pre>
+<style type="text/css" id="style.css-283">
     .show-scope-demo.ng-scope,
     .show-scope-demo .ng-scope  {
       border: 1px solid red;
@@ -137,8 +139,8 @@ a diagram depicting the scope boundaries.</p>
   </style>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-272"></pre>
-<script type="text/ng-template" id="script.js-272">
+<pre class="prettyprint linenums" ng-set-text="script.js-282"></pre>
+<script type="text/ng-template" id="script.js-282">
     function GreetCtrl($scope, $rootScope) {
       $scope.name = 'World';
       $rootScope.department = 'Angular';
@@ -150,7 +152,7 @@ a diagram depicting the scope boundaries.</p>
   </script>
 </div>
 </div><h3 id="what-are-scopes_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="" ng-set-html="index.html-271" ng-eval-javascript="script.js-272"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="" ng-set-html="index.html-281" ng-eval-javascript="script.js-282"></div>
 <p><img class="center" src="img/guide/concepts-scope.png"></p>
 <p>Notice that Angular automatically places <code>ng-scope</code> class on elements where scopes are
 attached. The <code>&lt;style&gt;</code> definition in this example highlights in red the new scope locations. The
@@ -179,10 +181,10 @@ variable.</p>
 <h3 id="what-are-scopes_scope-events-propagation">Scope Events Propagation</h3>
 <p>Scopes can propagate events in similar fashion to DOM events. The event can be <a href="api/ng.$rootScope.Scope#methods_$broadcast"><code>broadcasted</code></a> to the scope children or <a href="api/ng.$rootScope.Scope#methods_$emit"><code>emitted</code></a> to scope parents.</p>
 <h3 id="what-are-scopes_source">Source</h3>
-<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-275" source-edit-css="" source-edit-js="script.js-274" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-285" source-edit-css="" source-edit-js="script.js-284" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-275" ng-html-wrap=" angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-275">
+<pre class="prettyprint linenums" ng-set-text="index.html-285" ng-html-wrap=" angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-285">
     <div ng-controller="EventController">
       Root scope <tt>MyEvent</tt> count: {{count}}
       <ul>
@@ -202,8 +204,8 @@ variable.</p>
   </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-274"></pre>
-<script type="text/ng-template" id="script.js-274">
+<pre class="prettyprint linenums" ng-set-text="script.js-284"></pre>
+<script type="text/ng-template" id="script.js-284">
     function EventController($scope) {
       $scope.count = 0;
       $scope.$on('MyEvent', function() {
@@ -213,7 +215,7 @@ variable.</p>
   </script>
 </div>
 </div><h3 id="what-are-scopes_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="" ng-set-html="index.html-275" ng-eval-javascript="script.js-274"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="" ng-set-html="index.html-285" ng-eval-javascript="script.js-284"></div>
 <h3 id="what-are-scopes_scope-life-cycle">Scope Life Cycle</h3>
 <p>The normal flow of a browser receiving an event is that it executes a corresponding JavaScript
 callback. Once the callback completes the browser re-renders the DOM and returns to waiting for
@@ -245,7 +247,8 @@ used to propagate model values to the DOM.</p>
 <li><p><strong>Model mutation</strong></p>
 <p>For mutations to be properly observed, you should make them only within the <a href="api/ng.$rootScope.Scope#methods_$apply"><code>scope.$apply()</code></a>. (Angular APIs do this
 implicitly, so no extra <code>$apply</code> call is needed when doing synchronous work in controllers,
-or asynchronous work with <a href="api/ng.$http"><code>$http</code></a> or <a href="api/ng.$timeout"><code>$timeout</code></a> services.</p>
+or asynchronous work with <a href="api/ng.$http"><code>$http</code></a>, <a href="api/ng.$timeout"><code>$timeout</code></a>
+or <a href="api/ng.$interval"><code>$interval</code></a> services.</p>
 </li>
 <li><p><strong>Mutation observation</strong></p>
 <p>At the end <code>$apply</code>, Angular performs a <a href="api/ng.$rootScope.Scope#methods_$digest"><code>$digest</code></a> cycle on the root scope, which then propagates throughout all child scopes. During
@@ -277,7 +280,8 @@ correctly.</p>
 <p>In most cases, <a href="api/ng.$compileProvider#methods_directive"><code>directives</code></a> and scopes interact
 but do not create new instances of scope. However, some directives, such as <a href="api/ng.directive:ngController"><code>ng-controller</code></a> and <a href="api/ng.directive:ngRepeat"><code>ng-repeat</code></a>, create new child scopes
 and attach the child scope to the corresponding DOM element. You can retrieve a scope for any DOM
-element by using an <code>angular.element(aDomElement).scope()</code> method call.</p>
+element by using an <code>angular.element(aDomElement).scope()</code> method call.
+See the <a href="guide/directive#creating-custom-directives_demo_isolating-the-scope-of-a-directive">directives guide</a> for more information about isolate scopes.</p>
 <h4 id="what-are-scopes_scope-life-cycle_controllers-and-scopes">Controllers and Scopes</h4>
 <p>Scopes and controllers interact with each other in the following situations:</p>
 <ul>

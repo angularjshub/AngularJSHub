@@ -25,10 +25,10 @@ controller.</p>
 <li>Settings: url <code>settings</code> Show an edit screen for user contact information.</li>
 </ul>
 <h3 id="example_source">Source</h3>
-<div source-edit="deepLinking" source-edit-deps="angular.js angular-route.js angular-sanitize.js script.js" source-edit-html="index.html-180 settings.html welcome.html" source-edit-css="style.css-179" source-edit-js="script.js-178" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-181"></div>
+<div source-edit="deepLinking" source-edit-deps="angular.js angular-route.js angular-sanitize.js script.js" source-edit-html="index.html-190 settings.html welcome.html" source-edit-css="style.css-189" source-edit-js="script.js-188" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-191"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-180" ng-html-wrap="deepLinking angular.js angular-route.js angular-sanitize.js script.js"></pre>
-<script type="text/ng-template" id="index.html-180">
+<pre class="prettyprint linenums" ng-set-text="index.html-190" ng-html-wrap="deepLinking angular.js angular-route.js angular-sanitize.js script.js"></pre>
+<script type="text/ng-template" id="index.html-190">
     <div ng-controller="AppCntl">
       <h2 id="your-app-chrome">Your App Chrome</h2>
       [ <a href="welcome">Welcome</a> | <a href="settings">Settings</a> ]
@@ -77,8 +77,8 @@ controller.</p>
  </script>
 </div>
 <div class="tab-pane" title="style.css">
-<pre class="prettyprint linenums" ng-set-text="style.css-179"></pre>
-<style type="text/css" id="style.css-179">
+<pre class="prettyprint linenums" ng-set-text="style.css-189"></pre>
+<style type="text/css" id="style.css-189">
    [ng-view] {
      border: 1px solid blue;
      margin: 0;
@@ -93,8 +93,8 @@ controller.</p>
  </style>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-178"></pre>
-<script type="text/ng-template" id="script.js-178">
+<pre class="prettyprint linenums" ng-set-text="script.js-188"></pre>
+<script type="text/ng-template" id="script.js-188">
    angular.module('deepLinking', ['ngRoute', 'ngSanitize'])
      .config(function($routeProvider) {
         $routeProvider.
@@ -134,8 +134,8 @@ controller.</p>
  </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-181"></pre>
-<script type="text/ng-template" id="scenario.js-181">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-191"></pre>
+<script type="text/ng-template" id="scenario.js-191">
    it('should navigate to URL', function() {
      element('a:contains(Welcome)').click();
      expect(element('[ng-view]').text()).toMatch(/Hello anonymous/);
@@ -148,7 +148,7 @@ controller.</p>
  </script>
 </div>
 </div><h3 id="your-app-chrome_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="deepLinking" ng-set-html="index.html-180" ng-eval-javascript="script.js-178"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="deepLinking" ng-set-html="index.html-190" ng-eval-javascript="script.js-188"></div>
 <h2 id="things-to-notice">Things to notice</h2>
 <ul>
 <li>Routes are defined in the <code>AppCntl</code> class. The initialization of the controller causes the

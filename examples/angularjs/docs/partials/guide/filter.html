@@ -32,10 +32,10 @@ every digest, which can be costly if the array is big.</p>
 By this, the controller is able to call the filter only when needed (e.g. when the data is loaded from the backend
 or the filter expression is changed).</p>
 <h3 id="source">Source</h3>
-<div source-edit="FilterInControllerModule" source-edit-deps="angular.js script.js" source-edit-html="index.html-252" source-edit-css="" source-edit-js="script.js-251" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div source-edit="FilterInControllerModule" source-edit-deps="angular.js script.js" source-edit-html="index.html-262" source-edit-css="" source-edit-js="script.js-261" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-252" ng-html-wrap="FilterInControllerModule angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-252">
+<pre class="prettyprint linenums" ng-set-text="index.html-262" ng-html-wrap="FilterInControllerModule angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-262">
 
 
 <div ng-controller="FilterController as ctrl">
@@ -51,8 +51,8 @@ or the filter expression is changed).</p>
 </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-251"></pre>
-<script type="text/ng-template" id="script.js-251">
+<pre class="prettyprint linenums" ng-set-text="script.js-261"></pre>
+<script type="text/ng-template" id="script.js-261">
   angular.module('FilterInControllerModule', []).
     controller('FilterController', ['filterFilter', function(filterFilter) {
       this.array = [
@@ -68,7 +68,7 @@ or the filter expression is changed).</p>
 </script>
 </div>
 </div><h3 id="demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="FilterInControllerModule" ng-set-html="index.html-252" ng-eval-javascript="script.js-251"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="FilterInControllerModule" ng-set-html="index.html-262" ng-eval-javascript="script.js-261"></div>
 <h3 id="creating-custom-filters">Creating custom filters</h3>
 <p>Writing your own filter is very easy: just register a new filter factory function with
 your module. Internally, this uses the <a href="api/ng.$filterProvider"><code><code>filterProvider</code></code></a>.
@@ -78,10 +78,10 @@ function.</p>
 <p>The following sample filter reverses a text string. In addition, it conditionally makes the
 text upper-case.</p>
 <h3 id="source">Source</h3>
-<div source-edit="MyReverseModule" source-edit-deps="angular.js script.js" source-edit-html="index.html-254" source-edit-css="" source-edit-js="script.js-253" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div source-edit="MyReverseModule" source-edit-deps="angular.js script.js" source-edit-html="index.html-264" source-edit-css="" source-edit-js="script.js-263" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-254" ng-html-wrap="MyReverseModule angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-254">
+<pre class="prettyprint linenums" ng-set-text="index.html-264" ng-html-wrap="MyReverseModule angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-264">
 
 
 <div ng-controller="Ctrl">
@@ -93,8 +93,8 @@ text upper-case.</p>
 </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-253"></pre>
-<script type="text/ng-template" id="script.js-253">
+<pre class="prettyprint linenums" ng-set-text="script.js-263"></pre>
+<script type="text/ng-template" id="script.js-263">
   angular.module('MyReverseModule', []).
     filter('reverse', function() {
       return function(input, uppercase) {
@@ -116,5 +116,5 @@ text upper-case.</p>
 </script>
 </div>
 </div><h3 id="demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="MyReverseModule" ng-set-html="index.html-254" ng-eval-javascript="script.js-253"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="MyReverseModule" ng-set-html="index.html-264" ng-eval-javascript="script.js-263"></div>
 </div></div>

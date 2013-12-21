@@ -1,4 +1,4 @@
-<a href="http://github.com/angular/angular.js/tree/v1.2.4/src/ng/compile.js#L21" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/ng/compile.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">$compile</code>
+<a href="http://github.com/angular/angular.js/tree/v1.2.6/src/ng/compile.js#L21" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/ng/compile.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">$compile</code>
 <div><span class="hint">service in module <code ng:non-bindable="">ng</code>
 </span>
 </div>
@@ -319,10 +319,10 @@ to illustrate how <code>$compile</code> works.
 </div>
 
 <p> <h4 id="description_source">Source</h4>
-<div source-edit="compile" source-edit-deps="angular.js script.js" source-edit-html="index.html-155" source-edit-css="" source-edit-js="script.js-154" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-156"></div>
+<div source-edit="compile" source-edit-deps="angular.js script.js" source-edit-html="index.html-287" source-edit-css="" source-edit-js="script.js-286" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-288"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-155" ng-html-wrap="compile angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-155">
+<pre class="prettyprint linenums" ng-set-text="index.html-287" ng-html-wrap="compile angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-287">
     
     <div ng-controller="Ctrl">
       <input ng-model="name"> <br>
@@ -332,8 +332,8 @@ to illustrate how <code>$compile</code> works.
    </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-154"></pre>
-<script type="text/ng-template" id="script.js-154">
+<pre class="prettyprint linenums" ng-set-text="script.js-286"></pre>
+<script type="text/ng-template" id="script.js-286">
       angular.module('compile', [], function($compileProvider) {
         // configure new 'compile' directive by passing a directive
         // factory function. The factory function injects the '$compile'
@@ -368,8 +368,8 @@ to illustrate how <code>$compile</code> works.
     </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-156"></pre>
-<script type="text/ng-template" id="scenario.js-156">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-288"></pre>
+<script type="text/ng-template" id="scenario.js-288">
      it('should auto compile', function() {
        expect(element('div[compile]').text()).toBe('Hello Angular');
        input('html').enter('{{name}}!');
@@ -378,7 +378,7 @@ to illustrate how <code>$compile</code> works.
    </script>
 </div>
 </div><h4 id="description_demo">Demo</h4>
-<div class="well doc-example-live animate-container" ng-embed-app="compile" ng-set-html="index.html-155" ng-eval-javascript="script.js-154"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="compile" ng-set-html="index.html-287" ng-eval-javascript="script.js-286"></div>
 </div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage"><pre class="prettyprint linenums">$compile(element, transclude, maxPriority);</pre>
@@ -416,14 +416,14 @@ before you send them to the compiler and keep this reference around.
 example would not point to the clone, but rather to the original template that was cloned. In
 this case, you can access the clone via the cloneAttachFn:
 <pre class="prettyprint linenums">
-    var templateHTML = angular.element('&lt;p&gt;{{total}}&lt;/p&gt;'),
+    var templateElement = angular.element('&lt;p&gt;{{total}}&lt;/p&gt;'),
         scope = ....;
 
-    var clonedElement = $compile(templateHTML)(scope, function(clonedElement, scope) {
+    var clonedElement = $compile(templateElement)(scope, function(clonedElement, scope) {
       //attach the clone to DOM document at the right place
     });
 
-    //now we have reference to the cloned DOM via `clone`
+    //now we have reference to the cloned DOM via `clonedElement`
   </pre>
 </li>
 </ul>

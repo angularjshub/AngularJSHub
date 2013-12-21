@@ -213,7 +213,7 @@ to various URLs and verify that the correct view was rendered.</p>
 <pre class="prettyprint linenums">
 ...
   it('should redirect index.html to index.html#/phones', function() {
-    browser().navigateTo('../../app/index.html');
+    browser().navigateTo('app/index.html');
     expect(browser().location().url()).toBe('/phones');
   });
 ...
@@ -221,7 +221,7 @@ to various URLs and verify that the correct view was rendered.</p>
  describe('Phone detail view', function() {
 
     beforeEach(function() {
-      browser().navigateTo('../../app/index.html#/phones/nexus-s');
+      browser().navigateTo('app/index.html#/phones/nexus-s');
     });
 
 

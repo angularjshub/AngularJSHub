@@ -1,4 +1,4 @@
-<a href="http://github.com/angular/angular.js/tree/v1.2.4/src/ng/directive/ngInclude.js#L3" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/ng/directive/ngInclude.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">ngInclude</code>
+<a href="http://github.com/angular/angular.js/tree/v1.2.6/src/ng/directive/ngInclude.js#L3" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/ng/directive/ngInclude.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">ngInclude</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">ng</code>
 </span>
 </div>
@@ -70,10 +70,10 @@ make sure you wrap it in quotes, e.g. <code>src=&quot;&#39;myPartialTemplate.htm
 </div>
 <h2 id="example">Example</h2>
 <div class="example"><div class="ng-directive-page ng-directive-nginclude-page"><h4 id="example_source">Source</h4>
-<div source-edit="" source-edit-deps="angular.js angular-animate.js script.js" source-edit-html="index.html-84 template1.html template2.html" source-edit-css="animations.css" source-edit-js="script.js-85" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-86"></div>
+<div source-edit="" source-edit-deps="angular.js angular-animate.js script.js" source-edit-html="index.html-100 template1.html template2.html" source-edit-css="animations.css" source-edit-js="script.js-101" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-102"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-84" ng-html-wrap=" angular.js angular-animate.js script.js"></pre>
-<script type="text/ng-template" id="index.html-84">
+<pre class="prettyprint linenums" ng-set-text="index.html-100" ng-html-wrap=" angular.js angular-animate.js script.js"></pre>
+<script type="text/ng-template" id="index.html-100">
  <div ng-controller="Ctrl">
    <select ng-model="template" ng-options="t.name for t in templates">
     <option value="">(blank)</option>
@@ -142,8 +142,8 @@ make sure you wrap it in quotes, e.g. <code>src=&quot;&#39;myPartialTemplate.htm
 </style>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-85"></pre>
-<script type="text/ng-template" id="script.js-85">
+<pre class="prettyprint linenums" ng-set-text="script.js-101"></pre>
+<script type="text/ng-template" id="script.js-101">
   function Ctrl($scope) {
     $scope.templates =
       [ { name: 'template1.html', url: 'template1.html'}
@@ -153,8 +153,8 @@ make sure you wrap it in quotes, e.g. <code>src=&quot;&#39;myPartialTemplate.htm
  </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-86"></pre>
-<script type="text/ng-template" id="scenario.js-86">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-102"></pre>
+<script type="text/ng-template" id="scenario.js-102">
   it('should load template1.html', function() {
    expect(element('.doc-example-live [ng-include]').text()).
      toMatch(/Content of template1.html/);
@@ -171,6 +171,6 @@ make sure you wrap it in quotes, e.g. <code>src=&quot;&#39;myPartialTemplate.htm
 </script>
 </div>
 </div><div class="pull-right"> <button class="btn btn-primary" ng-click="animationsOff=true" ng-hide="animationsOff">Animations on</button> <button class="btn btn-primary disabled" ng-click="animationsOff=false" ng-show="animationsOff">Animations off</button></div><h4 id="example_demo">Demo</h4>
-<div class="well doc-example-live animate-container" ng-class="{'animations-off':animationsOff == true}" ng-embed-app="" ng-set-html="index.html-84" ng-eval-javascript="script.js-85"></div>
+<div class="well doc-example-live animate-container" ng-class="{'animations-off':animationsOff == true}" ng-embed-app="" ng-set-html="index.html-100" ng-eval-javascript="script.js-101"></div>
 </div></div>
 </div>

@@ -10,7 +10,7 @@
 </div>
 
 
-<p>The last improvement we will make to our app is to define a custom service that represents a <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">RESTful</a> client. Using this client we
+<p>The next improvement we will make to our app is to define a custom service that represents a <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">RESTful</a> client. Using this client we
 can make XHR requests for data in an easier way, without having to deal with the lower-level <a href="api/ng.$http"><code>$http</code></a> API, HTTP methods and URLs.</p>
 <p>The most important changes are listed below. You can see the full diff on <a href="https://github.com/angular/angular-phonecat/compare/step-10...step-11">GitHub</a>:</p>
 <h3 id="template">Template</h3>
@@ -150,7 +150,7 @@ describe('PhoneCat controllers', function() {
         xyzPhoneData = function() {
           return {
             name: 'phone xyz',
-                images: ['image/url1.png', 'image/url2.png']
+            images: ['image/url1.png', 'image/url2.png']
           }
         };
 

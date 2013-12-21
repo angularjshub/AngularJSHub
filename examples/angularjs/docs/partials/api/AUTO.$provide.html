@@ -1,4 +1,4 @@
-<a href="http://github.com/angular/angular.js/tree/v1.2.4/src/auto/injector.js#L269" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/auto/injector.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">$provide</code>
+<a href="http://github.com/angular/angular.js/tree/v1.2.6/src/auto/injector.js#L291" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/auto/injector.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">$provide</code>
 <div><span class="hint">service in module <code ng:non-bindable="">AUTO</code>
 </span>
 </div>
@@ -215,15 +215,15 @@ as a type/class. This is common when using <a href="http://coffeescript.org">Cof
 <a href="api/AUTO.$provide#methods_service"><code>$provide.service(class)</code></a> that is defined as a CoffeeScript class.
 <pre class="prettyprint linenums">
   class Ping
-    constructor: (@$http)-&gt;
-    send: ()=&gt;
+    constructor: (@$http) -&gt;
+    send: () =&gt;
       @$http.get('/ping')
 
   $provide.service('ping', ['$http', Ping])
 </pre>
 You would then inject and use this service like this:
 <pre class="prettyprint linenums">
-  someModule.controller 'Ctrl', ['ping', (ping)-&gt;
+  someModule.controller 'Ctrl', ['ping', (ping) -&gt;
     ping.send()
   ]
 </pre>

@@ -38,7 +38,7 @@ of which depend on other services that are provided by the Angular framework:</p
  * @param {*} message Message to be logged.
  */
   function batchLogModule($provide){
-    $provide.factory('batchLog', ['$timeout', '$log', function($timeout, $log) {
+    $provide.factory('batchLog', ['$interval', '$log', function($interval, $log) {
       var messageQueue = [];
 
       function log() {
@@ -46,11 +46,10 @@ of which depend on other services that are provided by the Angular framework:</p
           $log('batchLog messages: ', messageQueue);
           messageQueue = [];
         }
-        $timeout(log, 50000);
       }
 
       // start periodic checking
-      log();
+      $interval(log, 50000);
 
       return function(message) {
         messageQueue.push(message);
@@ -70,12 +69,12 @@ of which depend on other services that are provided by the Angular framework:</p
     }]);
   }
 
-  // get the main service to kick of the application
+  // get the main service to kick off the application
   angular.injector([batchLogModule]).get('routeTemplateMonitor');
 </pre>
 <p>Things to notice in this example:</p>
 <ul>
-<li>The <code>batchLog</code> service depends on the built-in <a href="api/ng.$timeout"><code>$timeout</code></a> and
+<li>The <code>batchLog</code> service depends on the built-in <a href="api/ng.$interval"><code>$interval</code></a> and
 <a href="api/ng.$log"><code>$log</code></a> services, and allows messages to be logged into the
 <code>console.log</code> in batches.</li>
 <li>The <code>routeTemplateMonitor</code> service depends on the built-in <a href="api/ngRoute.$route">$route</a> service as well as our custom <code>batchLog</code> service.</li>

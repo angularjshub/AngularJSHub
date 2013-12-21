@@ -1,4 +1,4 @@
-<a href="http://github.com/angular/angular.js/tree/v1.2.4/src/ng/directive/ngShowHide.js#L152" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/ng/directive/ngShowHide.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">ngHide</code>
+<a href="http://github.com/angular/angular.js/tree/v1.2.6/src/ng/directive/ngShowHide.js#L152" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/ng/directive/ngShowHide.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">ngHide</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">ng</code>
 </span>
 </div>
@@ -73,10 +73,10 @@ the element is shown or hidden respectively.</p>
 </div></td></tr></tbody></table></div>
 <h2 id="example">Example</h2>
 <div class="example"><div class="ng-directive-page ng-directive-nghide-page"><h4 id="example_source">Source</h4>
-<div source-edit="" source-edit-deps="angular.js angular-animate.js" source-edit-html="index.html-96" source-edit-css="animations.css" source-edit-js="" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-97"></div>
+<div source-edit="" source-edit-deps="angular.js angular-animate.js" source-edit-html="index.html-115" source-edit-css="animations.css" source-edit-js="" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-116"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-96" ng-html-wrap=" angular.js angular-animate.js"></pre>
-<script type="text/ng-template" id="index.html-96">
+<pre class="prettyprint linenums" ng-set-text="index.html-115" ng-html-wrap=" angular.js angular-animate.js"></pre>
+<script type="text/ng-template" id="index.html-115">
   Click me: <input type="checkbox" ng-model="checked"><br/>
   <div>
     Show:
@@ -124,8 +124,8 @@ the element is shown or hidden respectively.</p>
 </style>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-97"></pre>
-<script type="text/ng-template" id="scenario.js-97">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-116"></pre>
+<script type="text/ng-template" id="scenario.js-116">
    it('should check ng-show / ng-hide', function() {
      expect(element('.doc-example-live .check-element:first:hidden').count()).toEqual(1);
      expect(element('.doc-example-live .check-element:last:visible').count()).toEqual(1);
@@ -138,6 +138,6 @@ the element is shown or hidden respectively.</p>
 </script>
 </div>
 </div><div class="pull-right"> <button class="btn btn-primary" ng-click="animationsOff=true" ng-hide="animationsOff">Animations on</button> <button class="btn btn-primary disabled" ng-click="animationsOff=false" ng-show="animationsOff">Animations off</button></div><h4 id="example_demo">Demo</h4>
-<div class="well doc-example-live animate-container" ng-class="{'animations-off':animationsOff == true}" ng-embed-app="" ng-set-html="index.html-96" ng-eval-javascript=""></div>
+<div class="well doc-example-live animate-container" ng-class="{'animations-off':animationsOff == true}" ng-embed-app="" ng-set-html="index.html-115" ng-eval-javascript=""></div>
 </div></div>
 </div>

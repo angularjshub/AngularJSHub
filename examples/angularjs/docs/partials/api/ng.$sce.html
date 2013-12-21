@@ -1,4 +1,4 @@
-<a href="http://github.com/angular/angular.js/tree/v1.2.4/src/ng/sce.js#L398" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/ng/sce.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">$sce</code>
+<a href="http://github.com/angular/angular.js/tree/v1.2.6/src/ng/sce.js#L398" class="view-source btn btn-action"><i class="icon-zoom-in"> </i> View source</a><a href="http://github.com/angular/angular.js/edit/master/src/ng/sce.js" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable="">$sce</code>
 <div><span class="hint">service in module <code ng:non-bindable="">ng</code>
 </span>
 </div>
@@ -357,10 +357,10 @@ have to do it at module config time on <a href="api/ng.$sceProvider"><code>$sceP
 </div>
 <h2 id="example">Example</h2>
 <div class="example"><div class="ng-sce-page"><h4 id="example_source">Source</h4>
-<div source-edit="mySceApp" source-edit-deps="angular.js script.js" source-edit-html="index.html-144" source-edit-css="" source-edit-js="script.js-145" source-edit-json="test_data.json" source-edit-unit="" source-edit-scenario="scenario.js-146"></div>
+<div source-edit="mySceApp" source-edit-deps="angular.js script.js" source-edit-html="index.html-159" source-edit-css="" source-edit-js="script.js-160" source-edit-json="test_data.json" source-edit-unit="" source-edit-scenario="scenario.js-161"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-144" ng-html-wrap="mySceApp angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-144">
+<pre class="prettyprint linenums" ng-set-text="index.html-159" ng-html-wrap="mySceApp angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-159">
   <div ng-controller="myAppController as myCtrl">
     <i ng-bind-html="myCtrl.explicitlyTrustedHtml" id="explicitlyTrustedHtml"></i><br><br>
     <b>User comments</b><br>
@@ -378,8 +378,8 @@ have to do it at module config time on <a href="api/ng.$sceProvider"><code>$sceP
 </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-145"></pre>
-<script type="text/ng-template" id="script.js-145">
+<pre class="prettyprint linenums" ng-set-text="script.js-160"></pre>
+<script type="text/ng-template" id="script.js-160">
   var mySceApp = angular.module('mySceApp', ['ngSanitize']);
 
   mySceApp.controller("myAppController", function myAppController($http, $templateCache, $sce) {
@@ -408,8 +408,8 @@ have to do it at module config time on <a href="api/ng.$sceProvider"><code>$sceP
 </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-146"></pre>
-<script type="text/ng-template" id="scenario.js-146">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-161"></pre>
+<script type="text/ng-template" id="scenario.js-161">
   describe('SCE doc demo', function() {
     it('should sanitize untrusted values', function() {
       expect(element('.htmlComment').html()).toBe('<span>Is <i>anyone</i> reading this?</span>');
@@ -423,7 +423,7 @@ have to do it at module config time on <a href="api/ng.$sceProvider"><code>$sceP
 </script>
 </div>
 </div><h4 id="example_demo">Demo</h4>
-<div class="well doc-example-live animate-container" ng-embed-app="mySceApp" ng-set-html="index.html-144" ng-eval-javascript="script.js-145"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="mySceApp" ng-set-html="index.html-159" ng-eval-javascript="script.js-160"></div>
 <h4 id="example_can-i-disable-sce-completely">Can I disable SCE completely?</h4>
 <p>Yes, you can.  However, this is strongly discouraged.  SCE gives you a lot of security benefits
 for little coding overhead.  It will be much harder to take an SCE disabled application and

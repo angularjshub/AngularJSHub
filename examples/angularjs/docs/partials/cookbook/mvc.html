@@ -10,10 +10,10 @@ This makes it very easy to test the controller in isolation since one can simply
 controller and test without a view, because there is no connection between the controller and the
 view.</p>
 <h3 id="source">Source</h3>
-<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-189" source-edit-css="" source-edit-js="script.js-188" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-190"></div>
+<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-199" source-edit-css="" source-edit-js="script.js-198" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-200"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-189" ng-html-wrap=" angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-189">
+<pre class="prettyprint linenums" ng-set-text="index.html-199" ng-html-wrap=" angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-199">
     
 
     <h4 id="source_tic-tac-toe">Tic-Tac-Toe</h4>
@@ -31,8 +31,8 @@ view.</p>
   </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-188"></pre>
-<script type="text/ng-template" id="script.js-188">
+<pre class="prettyprint linenums" ng-set-text="script.js-198"></pre>
+<script type="text/ng-template" id="script.js-198">
     function TicTacToeCntl($scope, $location) {
       $scope.cellStyle= {
         'height': '20px',
@@ -99,8 +99,8 @@ view.</p>
     </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-190"></pre>
-<script type="text/ng-template" id="scenario.js-190">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-200"></pre>
+<script type="text/ng-template" id="scenario.js-200">
     it('should play a game', function() {
      piece(1, 1);
      expect(binding('nextMove')).toEqual('O');
@@ -118,7 +118,7 @@ view.</p>
   </script>
 </div>
 </div><h3 id="demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="" ng-set-html="index.html-189" ng-eval-javascript="script.js-188"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="" ng-set-html="index.html-199" ng-eval-javascript="script.js-198"></div>
 <h2 id="things-to-notice">Things to notice</h2>
 <ul>
 <li>The controller is defined in JavaScript and has no reference to the rendering logic.</li>
