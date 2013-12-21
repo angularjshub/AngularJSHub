@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+</head>
+
+<body ng-app>
+  <label>Type the number you want to show (1 to 5): <input type="text" ng-model="showNumber" /></label><br />
+  <div ng-switch="showNumber">
+    <div ng-switch-when="1" style="width: 50px; background-color: red; text-align: center;">1</div>
+    <div ng-switch-when="2" style="width: 50px; background-color: green; text-align: center;">2</div>
+    <div ng-switch-when="3" style="width: 50px; background-color: yellow; text-align: center;">3</div>
+    <div ng-switch-when="4" style="width: 50px; background-color: fuchsia; text-align: center;">4</div>
+    <div ng-switch-when="5" style="width: 50px; background-color: orange; text-align: center;">5</div>
+    <div ng-switch-default style="width: 50px; background-color: lightgray; text-align: center;">None</div>
+  </div>
+</body>
+</html>

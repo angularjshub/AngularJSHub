@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    .logTextArea
+    {
+      width: 400px;
+      height: 250px;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Simple GET call</h3>
+    <button ng-click="simpleGetCall(true)">Call server with SUCCESS</button><br />
+    <button ng-click="simpleGetCall(false)">Call server with ERROR</button><br />
+    <textarea class="logTextArea">{{simpleGetCallResult}}</textarea>
+    <br />
+    <h3>2. GET call with parameters</h3>
+    <label>Parameter 1: <input type="text" ng-model="getParam1" ng-init="getParam1 = 'param1 value'" /></label><br />
+    <label>Parameter 2: <input type="text" ng-model="getParam2" ng-init="getParam2 = 'param2 value'" /></label><br />
+    <button ng-click="getCall()">GET call</button><br />
+    <textarea class="logTextArea">{{getCallResult}}</textarea>
+    <br />
+    <h3>3. GET call with JSON response</h3>
+    <label>Parameter 1: <input type="text" ng-model="getJSONParam1" ng-init="getJSONParam1 = 'param1 value'" /></label><br />
+    <label>Parameter 2: <input type="text" ng-model="getJSONParam2" ng-init="getJSONParam2 = 'param2 value'" /></label><br />
+    <button ng-click="getCallJSON()">GET call</button><br />
+    <textarea class="logTextArea">{{getCallJSONResult}}</textarea>
+    <br />
+    <h3>4. GET call with timeout</h3>
+    <button ng-click="getCallTimeout()">GET call</button><br />
+    <textarea class="logTextArea">{{getCallTimeoutResult}}</textarea>
+    <br />
+    <h3>5. GET call with custom headers</h3>
+    <button ng-click="getCallCustomHeaders()">GET call</button><br />
+    <textarea class="logTextArea">{{getCallCustomHeadersResult}}</textarea>
+    <br />
+    <h3>6. GET call with transformation functions</h3>
+    <button ng-click="getCallTransformFuncs()">GET call</button><br />
+    <textarea class="logTextArea">{{getCallTransformFuncsResult}}</textarea>
+    <br />
+    <h3>7. POST call with parameters and data</h3>
+    <label>Parameter 1: <input type="text" ng-model="postParam1" ng-init="postParam1 = 'param1 value'" /></label><br />
+    <label>Parameter 2: <input type="text" ng-model="postParam2" ng-init="postParam2 = 'param2 value'" /></label><br />
+    <label>Data: <input type="text" ng-model="postData" ng-init="postData = 'Custom data'" /></label><br />
+    <button ng-click="postCall()">POST call</button><br />
+    <textarea class="logTextArea">{{postCallResult}}</textarea>
+    <br />
+    <h3>8. PUT call with parameters and data</h3>
+    <label>Parameter 1: <input type="text" ng-model="putParam1" ng-init="putParam1 = 'param1 value'" /></label><br />
+    <label>Parameter 2: <input type="text" ng-model="putParam2" ng-init="putParam2 = 'param2 value'" /></label><br />
+    <label>Data: <input type="text" ng-model="putData" ng-init="putData = 'Custom data'" /></label><br />
+    <button ng-click="putCall()">PUT call</button><br />
+    <textarea class="logTextArea">{{putCallResult}}</textarea>
+    <br />
+    <h3>9. DELETE call with parameters</h3>
+    <label>Parameter 1: <input type="text" ng-model="deleteParam1" ng-init="deleteParam1 = 'param1 value'" /></label><br />
+    <label>Parameter 2: <input type="text" ng-model="deleteParam2" ng-init="deleteParam2 = 'param2 value'" /></label><br />
+    <button ng-click="deleteCall()">DELETE call</button><br />
+    <textarea class="logTextArea">{{deleteCallResult}}</textarea>
+    <br />
+    <h3>10. HEAD call with parameters</h3>
+    <label>Parameter 1: <input type="text" ng-model="headParam1" ng-init="headParam1 = 'param1 value'" /></label><br />
+    <label>Parameter 2: <input type="text" ng-model="headParam2" ng-init="headParam2 = 'param2 value'" /></label><br />
+    <button ng-click="headCall()">HEAD call</button><br />
+    <textarea class="logTextArea">{{headCallResult}}</textarea>
+  </div>
+</body>
+</html>

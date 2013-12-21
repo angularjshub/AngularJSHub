@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+</head>
+
+<body ng-app>
+  <label>Show the square: <input type="checkbox" ng-model="mustShow" /></label><br />
+  <div ng-if="mustShow" style="width: 50px; height: 50px; background-color: red;"></div>
+  <div ng-if="!mustShow" style="width: 100px; background-color: lightgray; text-align: center;">Not shown</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    label
+    {
+      display: inline-block;
+      width: 100px;
+      vertical-align: middle;
+    }
+
+    input
+    {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    input.ng-invalid
+    {
+      border: solid red 2px;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <form name="personForm" novalidate>
+      <label for="firstNameEdit">First name:</label>
+      <input id="firstNameEdit" type="text" name="firstName" ng-model="person.firstName" required /><br />
+      <label for="lastNameEdit">Last name:</label>
+      <input id="lastNameEdit" type="text" name="lastName" ng-model="person.lastName" required /><br />
+      <br />
+      <button type="button"
+              ng-click="resetForm()"
+              ng-disabled="!isPersonChanged()">Reset</button>
+    </form>
+    <br />
+    <strong>personForm.$pristine =</strong> {{personForm.$pristine}}<br />
+    <strong>personForm.$valid =</strong> {{personForm.$valid}}
+  </div>
+</body>
+</html>

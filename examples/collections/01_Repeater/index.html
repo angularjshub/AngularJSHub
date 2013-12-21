@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    table
+    {
+      border-collapse: collapse;
+    }
+
+    table, th, td
+    {
+      border: 1px solid #e1e1e1;
+    }
+
+    th, td
+    {
+      padding: 6px;
+    }
+
+    thead
+    {
+      background-color: #fcfcfc;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Simple table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="person in people">
+          <td>{{person.firstName}}</td>
+          <td>{{person.lastName}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h3>2. Table with rows selection</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>
+          <input type="checkbox" ng-model="areAllPeopleSelected"
+                 ng-change="updatePeopleSelection(selectablePeople, areAllPeopleSelected)" />
+        </th>
+        <th>First name</th>
+        <th>Last name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="person in selectablePeople">
+        <td><input type="checkbox" ng-model="person.isSelected" /></td>
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <br />
+    <h3>3. List with special variables</h3>
+    <ul>
+      <li ng-repeat="person in people">
+        {{$index + 1}}. {{person.firstName}} {{person.lastName}} <strong>{{getPersonPositionDesc($first, $middle, $last, $even, $odd)}}</strong>
+      </li>
+    </ul>
+    <br />
+    <h3>4. Nested lists with object's properties</h3>
+    <ul>
+      <li ng-repeat="person in selectablePeople">
+        <strong>Object {{$index + 1}}</strong>
+        <ul>
+          <li ng-repeat="(propName, propValue) in person">
+            {{$index + 1}}. <strong>name =</strong> {{propName}}, <strong>value =</strong> {{propValue}}
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <br />
+    <h3>5. Add and remove items</h3>
+    <button ng-click="addStringToArray()">Add item</button><br />
+    <br />
+    <table>
+      <tbody>
+        <tr ng-repeat="str in stringsArray">
+          <td><button ng-click="$parent.removeStringFromArray($index)" />Remove</td>
+          <td>{{str}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

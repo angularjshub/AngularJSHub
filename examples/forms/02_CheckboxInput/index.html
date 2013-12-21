@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+
+  <style>
+    label
+    {
+      width: 250px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    input
+    {
+      vertical-align: middle;
+    }
+
+    .valueItems
+    {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body ng-app>
+  <div>
+    <label for="basicCheck">Basic checkbox:</label>
+    <input id="basicCheck" type="checkbox" ng-model="basicCheckValue" />
+    <span class="valueItems"><strong>Value:</strong> {{basicCheckValue}}</span><br />
+
+    <label for="customValCheck">Checkbox with custom values:</label>
+    <input id="customValCheck" type="checkbox" ng-model="customValCheckValue"
+           ng-true-value="right" ng-false-value="wrong"/>
+    <span class="valueItems"><strong>Value:</strong> {{customValCheckValue}}</span>
+  </div>
+</body>
+</html>

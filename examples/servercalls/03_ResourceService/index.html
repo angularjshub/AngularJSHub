@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="../../angularjs/angular-resource.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    .logTextArea
+    {
+      width: 400px;
+      height: 250px;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. GET request with parameters</h3>
+    <label>Parameter 1: <input type="text" ng-model="getParam1" /></label><br />
+    <label>Parameter 2: <input type="text" ng-model="getParam2" /></label><br />
+    <button ng-click="getWithParams(true)">GET call with SUCCESS</button><br />
+    <button ng-click="getWithParams(false)">GET call with ERROR</button><br />
+    <textarea class="logTextArea">{{getWithParamsResult}}</textarea>
+    <br />
+    <h3>2. Resource constructor-level methods</h3>
+    <button ng-click="getCall()">get call</button>
+    <button ng-click="queryCall()">query call</button>
+    <button ng-click="saveCall()">save call</button>
+    <button ng-click="deleteCall()">delete call</button>
+    <button ng-click="putCall()">put call</button><br />
+    <br />
+    <strong>{{callName}}</strong><br />
+    <span ng-hide="callResult === undefined || callResult.$resolved">Waiting for result...</span><br />
+    <textarea class="logTextArea">{{(callResult.$resolved ? (callResult | json) : "")}}</textarea>
+    <br />
+    <h3>3. Resource instance-level methods</h3>
+    <button ng-click="instGetCall()">get call</button>
+    <button ng-click="instSaveCall()">save call</button>
+    <button ng-click="instDeleteCall()">delete call</button>
+    <button ng-click="instPutCall()">put call</button><br />
+    <br />
+    <strong>{{instCallName}}</strong><br />
+    <span ng-hide="instCallResult === undefined || instCallResult.$resolved">Waiting for result...</span><br />
+    <textarea class="logTextArea">{{(instCallResult.$resolved ? (instCallResult | json) : "")}}</textarea>
+    <br />
+  </div>
+</body>
+</html>

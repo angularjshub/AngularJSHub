@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+
+  <style>
+    label
+    {
+      width: 80px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    input
+    {
+      width: 150px;
+      vertical-align: middle;
+    }
+
+    textarea
+    {
+      width: 150px;
+      height: 100px;
+      vertical-align: middle;
+    }
+
+    .valueItems
+    {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body ng-app>
+  <div>
+    <label for="textEdit">Text:</label>
+    <input id="textEdit" type="text" ng-model="textValue" />
+    <span class="valueItems"><strong>Value:</strong> {{textValue}}</span><br />
+
+    <label for="emailEdit">E-mail:</label>
+    <input id="emailEdit" type="email" ng-model="emailValue" />
+    <span class="valueItems"><strong>Value:</strong> {{emailValue}}</span><br />
+
+    <label for="urlEdit">URL:</label>
+    <input id="urlEdit" type="url" ng-model="urlValue" />
+    <span class="valueItems"><strong>Value:</strong> {{urlValue}}</span><br />
+
+    <label for="passwordEdit">Password:</label>
+    <input id="passwordEdit" type="password" ng-model="passwordValue" />
+    <span class="valueItems"><strong>Value:</strong> {{passwordValue}}</span><br />
+
+    <label for="numberEdit">Number:</label>
+    <input id="numberEdit" type="number" ng-model="numberValue" />
+    <span class="valueItems"><strong>Value:</strong> {{numberValue}}</span><br />
+
+    <label for="textareaEdit">Text area:</label>
+    <textarea id="textareaEdit" ng-model="textareaValue"></textarea>
+    <span class="valueItems"><strong>Value:</strong> {{textareaValue}}</span>
+  </div>
+</body>
+</html>

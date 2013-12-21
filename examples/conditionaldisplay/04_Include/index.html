@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+</head>
+
+<body ng-app ng-init="inputVar = 'test';">
+  <label>Type something: <input type="text" ng-model="inputVar" /></label><br />
+  <br />
+  <h3>1. Simple include</h3>
+  <div ng-include="'fragment1.html'"></div>
+  <br />
+  <h3>2. Conditional include</h3>
+  <label>Include fragment 2: <input type="checkbox" ng-model="includeFrag2" /></label>
+  <div ng-include="includeFrag2 ? 'fragment2.html' : 'fragment1.html'"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    #defaultValidationClassesPart .ng-valid
+    {
+      border: solid green 3px;
+    }
+
+    #defaultValidationClassesPart .ng-invalid
+    {
+      border: solid red 3px;
+    }
+
+    #customValidationClassesPart .invalidItem
+    {
+      border: dashed red 2px;
+    }
+
+    form
+    {
+      padding: 10px;
+    }
+
+    textarea
+    {
+      width: 250px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <div id="defaultValidationClassesPart">
+      <h3>1. Validating single elements</h3>
+      <label>Text:
+        <input type="text"
+               required
+               ng-model="textValue"
+               ng-minlength="3"
+               ng-maxlength="10"
+               ng-pattern="/^[A-Z0-9]+$/" />
+      </label><br />
+      <strong>Value:</strong> {{textValue}}<br />
+      <br />
+      <br />
+      <label>Number:
+        <input type="number"
+               ng-model="numberValue"
+               min="5"
+               max="12"/>
+      </label><br />
+      <strong>Value:</strong> {{numberValue}}<br />
+      <br />
+      <h3>2. Validating a form</h3>
+      <form name="testForm" novalidate>
+        <label>Text:
+          <input type="text"
+                 name="formText"
+                 required
+                 ng-model="formTextValue"
+                 ng-minlength="3"
+                 ng-maxlength="10"
+                 ng-pattern="/^[A-Z0-9]+$/" />
+        </label><br />
+        <strong>State:</strong> {{getItemState(testForm.formText)}}<br />
+        <strong>Error messages:</strong><br />
+        <div ng-if="testForm.formText.$error.required">This field is required<br /></div>
+        <div ng-if="testForm.formText.$error.minlength">The text is too short<br /></div>
+        <div ng-if="testForm.formText.$error.maxlength">The text is too long<br /></div>
+        <div ng-if="testForm.formText.$error.pattern">Invalid text format<br /></div>
+        <div ng-if="testForm.formText.$valid">No errors<br /></div>
+        <strong>Error:</strong><br />
+        <textarea>{{getItemError(testForm.formText) | json}}</textarea><br />
+        <br />
+        <label>E-mail:
+          <input type="email"
+                 name="formEmail"
+                 ng-model="formEmailValue" />
+        </label><br />
+        <strong>State:</strong> {{getItemState(testForm.formEmail)}}<br />
+        <strong>Error messages:</strong><br />
+        <div ng-show="testForm.formEmail.$error.email">Invalid e-mail address<br /></div>
+        <div ng-if="testForm.formEmail.$valid">No errors<br /></div>
+        <strong>Error:</strong><br />
+        <textarea>{{getItemError(testForm.formEmail) | json}}</textarea><br />
+        <br />
+        <strong>Form state:</strong> {{getItemState(testForm)}}<br />
+        <strong>Form error:</strong><br />
+        <textarea>{{getItemError(testForm) | json}}</textarea><br />
+      </form>
+      <br />
+    </div>
+    <div id="customValidationClassesPart">
+      <h3>3. Custom CSS classes</h3>
+      <form name="personForm" novalidate>
+        <label>Check for the first name to be mandatory:
+          <input type="checkbox" ng-model="firstNameRequired" ng-init="firstNameRequired = true" />
+        </label><br />
+        <label>First name:
+          <input type="text"
+                 name="firstName"
+                 ng-required="firstNameRequired"
+                 ng-model="person.firstName"
+                 ng-class="getValidationCSSClass(personForm.firstName)" />
+        </label>
+        <span ng-show="personForm.firstName.$invalid" style="color: red">{{getValidationError(personForm.firstName)}}</span><br />
+        <label>Last name:
+          <input type="text"
+                 name="lastName"
+                 required
+                 ng-model="person.lastName"
+                 ng-class="getValidationCSSClass(personForm.lastName)" />
+        </label>
+        <span ng-show="personForm.lastName.$invalid" style="color: red">{{getValidationError(personForm.lastName)}}</span><br />
+      </form>
+    </div>
+  </div>
+</body>
+</html>

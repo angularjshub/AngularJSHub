@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    table
+    {
+      border-collapse: collapse;
+    }
+
+    table, th, td
+    {
+      border: 1px solid #e1e1e1;
+    }
+
+    th, td
+    {
+      padding: 6px;
+    }
+
+    thead
+    {
+      background-color: #fcfcfc;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Simple substring filter</h3>
+    <label>Filter: <input type="text" ng-model="simpleFilter" /></label><br />
+    <table>
+      <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="person in people | filter:simpleFilter">
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+        <td>{{person.age}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <br />
+    <h3>2. Object's properties filter (alternative 1)</h3>
+    <label>Last name: <input type="text" ng-model="objProp1LastNameFilter" /></label><br />
+    <label>Age: <input type="text" ng-model="objProp1AgeFilter" /></label><br />
+    <table>
+      <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="person in people | filter:{lastName: objProp1LastNameFilter, age: objProp1AgeFilter}">
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+        <td>{{person.age}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <br />
+    <h3>3. Object's properties filter (alternative 2)</h3>
+    <label>First or last name: <input type="text" ng-model="objProp2NameFilter" /></label><br />
+    <label>Age: <input type="text" ng-model="objProp2AgeFilter" /></label><br />
+    <table>
+      <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="person in people | filter:{$: objProp2NameFilter, age: objProp2AgeFilter}">
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+        <td>{{person.age}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <br />
+    <h3>4. Storing the filtered array in a variable</h3>
+    <label>Filter: <input type="text" ng-model="substrFilter" /></label><br />
+    <table>
+      <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="person in filteredPeople = (people | filter:substrFilter)">
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+        <td>{{person.age}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <br />
+    <strong>Number of filtered people: </strong>{{filteredPeople.length}}<br />
+    <br />
+    <h3>5. Custom array filter</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="person in people | filter:customArrayFilter">
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+        <td>{{person.age}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <br />
+    <h3>6. Custom filter comparator ?????????????</h3>
+    <label>Filter: <input type="text" ng-model="comparatorSubstrFilter" /></label><br />
+    <table>
+      <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="person in people | filter:{$: comparatorSubstrFilter}:customArrayComparator">
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+        <td>{{person.age}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

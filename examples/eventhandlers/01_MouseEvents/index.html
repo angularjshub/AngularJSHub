@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Click</h3>
+    <button id="firstBtn" ng-click="onFirstBtnClick()">Click me</button>
+    <strong>RESULT:</strong> {{onFirstBtnClickResult}}<br />
+    <br />
+    <h3>2. Click with Dependency Injection</h3>
+    <label>Type something: <input type="text" ng-model="secondBtnInput"></label>
+    <button id="secondBtn" ng-click="onSecondBtnClick(secondBtnInput)">Click me</button><br />
+    <strong>RESULT:</strong> {{onSecondBtnClickResult}}<br />
+    <br />
+    <h3>3. Double click</h3>
+    Double-click the square<br />
+    <img src="images/square.png" ng-dblclick="onDblClick()" /><br />
+    <strong>RESULT:</strong> {{onDblClickResult}}<br />
+    <h3>4. Mouse down, up, enter, leave, move, over</h3>
+    Move the mouse on the square<br />
+    <img src="images/square.png"
+         ng-mousedown="onMouseDown($event)"
+         ng-mouseup="onMouseUp($event)"
+         ng-mouseenter="onMouseEnter($event)"
+         ng-mouseleave="onMouseLeave($event)"
+         ng-mousemove="onMouseMove($event)"
+         ng-mouseover="onMouseOver($event)" /><br />
+    <strong>MOUSE DOWN RESULT:</strong> {{onMouseDownResult}}<br />
+    <strong>MOUSE UP RESULT:</strong> {{onMouseUpResult}}<br />
+    <strong>MOUSE ENTER RESULT:</strong> {{onMouseEnterResult}}<br />
+    <strong>MOUSE LEAVE RESULT:</strong> {{onMouseLeaveResult}}<br />
+    <strong>MOUSE MOVE RESULT:</strong> {{onMouseMoveResult}}<br />
+    <strong>MOUSE OVER RESULT:</strong> {{onMouseOverResult}}
+  </div>
+</body>
+</html>

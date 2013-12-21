@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Text input with and without a change event handler</h3>
+    Type something<br />
+    <label>Input with change event: <input type="text" ng-model="editValue" ng-change="onEditChange()" /></label><br />
+    <label>Input without change event: <input type="text" ng-model="editValue" /></label><br />
+    <strong>RESULT:</strong> {{onEditChangeResult}}<br />
+    <br />
+    <h3>2. Change event on checkbox</h3>
+    Select a checkbox<br />
+    <label>Check1: <input type="checkbox" ng-model="check1Selected" ng-change="onCheckBoxChange()" /></label><br />
+    <label>Check2: <input type="checkbox" ng-model="check2Selected" ng-change="onCheckBoxChange()" /></label><br />
+    <strong>RESULT:</strong> {{onCheckBoxChangeResult}}<br />
+    <br />
+    <h3>3. Change event on text input without model</h3>
+    <label>Type something: <input type="text" ng-change="onEditNoModelChange()" /></label><br />
+    <strong>RESULT:</strong> {{onEditNoModelChangeResult}}<br />
+  </div>
+</body>
+</html>

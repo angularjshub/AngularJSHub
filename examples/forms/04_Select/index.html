@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    label
+    {
+      width: 120px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    select
+    {
+      width: 150px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    textarea
+    {
+      width: 250px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Options in the HTML template</h3>
+    <label for="simpleColorSel">Simple select:</label>
+    <select id="simpleColorSel" ng-model="simpleColorValue">
+      <option value="red">Red</option>
+      <option value="green">Green</option>
+      <option value="blue">Blue</option>
+    </select><br />
+    <br />
+    <strong>Selected color:</strong> {{simpleColorValue}}<br />
+    <br />
+    <h3>2. Options from an array</h3>
+    <!-- label for value in array -->
+    <label for="colorsArraySel">Array select 1:</label>
+    <select id="colorsArraySel" ng-model="colorsArrayValue" ng-options="color for color in colorsArray">
+      <option value="">[No color]</option>
+    </select><br />
+    <br />
+    <strong>Selected color:</strong> {{colorsArrayValue}}<br />
+    <br />
+    <br />
+    <!-- label for value in array -->
+    <label for="peopleArraySel1">Array select 2:</label>
+    <select id="peopleArraySel1" ng-model="peopleArrayValue1" ng-options="person.firstName for person in peopleArray">
+      <option value="">[No person]</option>
+    </select><br />
+    <br />
+    <strong>Selected person:</strong><br />
+    <textarea>{{peopleArrayValue1 | json}}</textarea><br />
+    <br />
+    <br />
+    <!-- label for value in array -->
+    <label for="peopleArraySel2">Array select 3:</label>
+    <select id="peopleArraySel2" ng-model="peopleArrayValue2" ng-options="getPersonFullName(person) for person in peopleArray">
+      <option value="">[No person]</option>
+    </select><br />
+    <br />
+    <strong>Selected person:</strong><br />
+    <textarea>{{peopleArrayValue2 | json}}</textarea><br />
+    <br />
+    <br />
+    <!-- select as label for value in array -->
+    <label for="peopleArraySel3">Array select 4:</label>
+    <select id="peopleArraySel3" ng-model="peopleArrayValue3" ng-options="person.lastName as getPersonFullName(person) for person in peopleArray">
+      <option value="">[No person]</option>
+    </select><br />
+    <br />
+    <strong>Selected person:</strong> {{peopleArrayValue3}}<br />
+    <br />
+    <br />
+    <!-- label group by group for value in array -->
+    <label for="peopleArraySel4">Array select 5:</label>
+    <select id="peopleArraySel4" ng-model="peopleArrayValue4" ng-options="getPersonFullName(person) group by person.sex for person in peopleArray">
+      <option value="">[No person]</option>
+    </select><br />
+    <br />
+    <strong>Selected person:</strong><br />
+    <textarea>{{peopleArrayValue4 | json}}</textarea><br />
+    <br />
+    <br />
+    <!-- select as label group by group for value in array track by trackexpr -->
+    <label for="peopleArraySel5">Array select 6:</label>
+    <select id="peopleArraySel5" ng-model="peopleArrayValue5" ng-options="person as getPersonIdAndFullName(person) group by person.sex for person in peopleArray track by person.id">
+      <option value="">[No person]</option>
+    </select><br />
+    Type the ID to select a person:
+    <input type="text" ng-model="selPersonId" ng-change="selectPersonById(selPersonId)" /><br />
+    <br />
+    <strong>Selected person:</strong><br />
+    <textarea>{{peopleArrayValue5 | json}}</textarea><br />
+    <br />
+    <br />
+    <h3>3. Options from an object</h3>
+    <!-- label for (key, value) in object -->
+    <label for="colorsObjectSel">Object select 1:</label>
+    <select id="colorsObjectSel" ng-model="colorsObjectValue" ng-options="code for (code, name) in colorsObject">
+      <option value="">[No color]</option>
+    </select><br />
+    <br />
+    <strong>Selected color:</strong> {{colorsObjectValue}}<br />
+    <br />
+    <br />
+    <!-- select as label for (key, value) in object -->
+    <label for="peopleObjectSel1">Object select 2:</label>
+    <select id="peopleObjectSel1" ng-model="peopleObjectValue1" ng-options="id as person.firstName for (id, person) in peopleObject">
+      <option value="">[No person]</option>
+    </select><br />
+    <br />
+    <strong>Selected person ID:</strong> {{peopleObjectValue1}}<br />
+    <br />
+    <br />
+    <!-- label group by group for (key, value) in object -->
+    <label for="peopleObjectSel2">Object select 3:</label>
+    <select id="peopleObjectSel2" ng-model="peopleObjectValue2" ng-options="person.lastName group by person.sex for (id, person) in peopleObject">
+      <option value="">[No person]</option>
+    </select><br />
+    <br />
+    <strong>Selected person:</strong><br />
+    <textarea>{{peopleObjectValue2 | json}}</textarea><br />
+    <br />
+    <br />
+    <!-- select as label group by group for (key, value) in object -->
+    <label for="peopleObjectSel3">Object select 4:</label>
+    <select id="peopleObjectSel3" ng-model="peopleObjectValue3" ng-options="person as getPersonFullName(person) group by person.sex for (id, person) in peopleObject">
+      <option value="">[No person]</option>
+    </select><br />
+    <br />
+    <strong>Selected person:</strong><br />
+    <textarea>{{peopleObjectValue3 | json}}</textarea><br />
+    <br />
+    <br />
+    <h3>4. Selecting multiple options</h3>
+    <label for="multiColorsSel">Multiple select:</label>
+    <select id="multiColorsSel" ng-model="multiColorsValue" ng-options="color for color in colorsArray" multiple>
+      <option value="">[No color]</option>
+    </select><br />
+    <br />
+    <strong>Selected colors:</strong> {{multiColorsValue}}
+  </div>
+</body>
+</html>

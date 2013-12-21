@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Basic example</h3>
+    <button ng-click="basicAsyncFunc(true)">Call asynchronous function with SUCCESS</button><br />
+    <button ng-click="basicAsyncFunc(false)">Call asynchronous function with ERROR</button><br />
+    <br />
+    <strong>Function result: </strong>{{basicAsyncFuncResult}}<br />
+    <br />
+    <h3>2. Registering multiple callbacks</h3>
+    <button ng-click="multiCb()">Call asynchronous function</button><br />
+    <br />
+    <strong>Result 1: </strong>{{multiCbResult1}}<br />
+    <strong>Result 2: </strong>{{multiCbResult2}}<br />
+    <br />
+    <h3>3. Alternative callback registration methods</h3>
+    <button ng-click="altBasicAsyncFunc(true)">Call asynchronous function with SUCCESS</button><br />
+    <button ng-click="altBasicAsyncFunc(false)">Call asynchronous function with ERROR</button><br />
+    <br />
+    <strong>Function result: </strong>{{altBasicAsyncFuncResult}}<br />
+    <br />
+    <h3>4. Chaining promises</h3>
+    Both asyncFunc1 and asyncFunc2 are successful<br />
+    <button ng-click="chainedAsyncFunc([true, true])">Execution 1</button><br />
+    <br />
+    asyncFunc1 is succesful but asyncFunc2 fails<br />
+    <button ng-click="chainedAsyncFunc([true, false])">Execution 2</button><br />
+    <br />
+    asyncFunc1 fails, asyncFunc2 would be successful but it's never called<br />
+    <button ng-click="chainedAsyncFunc([false, true])">Execution 3</button><br />
+    <br />
+    asyncFunc1 fails, asyncFunc2 would fail as well but it's never called<br />
+    <button ng-click="chainedAsyncFunc([false, false])">Execution 4</button><br />
+    <br />
+    <strong>Input: </strong>{{chainedAsyncFuncInput}}<br />
+    <strong>Output: </strong>{{chainedAsyncFuncResult}}<br />
+    <br />
+    <h3>5. Aggregating promises</h3>
+    Calls 1, 2 and 3 are successful<br />
+    <button ng-click="aggregatedAsyncFunc(true, true, true)">Execution 1</button><br />
+    <br />
+    Calls 1 and 3 are successful while 2 fails<br />
+    <button ng-click="aggregatedAsyncFunc(true, false, true)">Execution 2</button><br />
+    <br />
+    Calls 1, 2 and 3 fail<br />
+    <button ng-click="aggregatedAsyncFunc(false, false, false)">Execution 3</button><br />
+    <br />
+    <strong>Input: </strong>{{aggregatedAsyncFuncInput}}<br />
+    <strong>Output: </strong>{{aggregatedAsyncFuncResult}}<br />
+    <br />
+    <h3>6. Wrapping a value in a promise</h3>
+    Calls 1 and 2 are successful<br />
+    <button ng-click="whenAsyncFunc(true, true)">Execution 1</button><br />
+    <br />
+    Call 1 is successful while 2 fails<br />
+    <button ng-click="whenAsyncFunc(true, false)">Execution 2</button><br />
+    <br />
+    <strong>Input: </strong>{{whenAsyncFuncInput}}<br />
+    <strong>Output: </strong>{{whenAsyncFuncResult}}<br />
+    <br />
+    <h3>7. Aggregating promises returned by the $http service</h3>
+    Calls 1, 2 and 3 are successful<br />
+    <button ng-click="aggregatedHTTPAsyncFunc(true, true, true)">Execution 1</button><br />
+    <br />
+    Calls 1 and 3 are successful while 2 fails<br />
+    <button ng-click="aggregatedHTTPAsyncFunc(true, false, true)">Execution 2</button><br />
+    <br />
+    Calls 1, 2 and 3 fail<br />
+    <button ng-click="aggregatedHTTPAsyncFunc(false, false, false)">Execution 3</button><br />
+    <br />
+    <strong>Input: </strong>{{aggregatedHTTPAsyncFuncInput}}<br />
+    <strong>Output: </strong>{{aggregatedHTTPAsyncFuncResult}}<br />
+    <br />
+  </div>
+</body>
+</html>

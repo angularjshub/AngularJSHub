@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+
+  <style>
+    label
+    {
+      width: 60px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    input
+    {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body ng-app>
+  <div>
+    <label for="redRadio">Red:</label>
+    <input id="redRadio" type="radio" ng-model="colorValue" value="red" /><br />
+
+    <label for="greenRadio">Green:</label>
+    <input id="greenRadio" type="radio" ng-model="colorValue" value="green" /><br />
+
+    <label for="blueRadio">Blue:</label>
+    <input id="blueRadio" type="radio" ng-model="colorValue" value="blue" /><br />
+    <br />
+    <strong>Selected color:</strong> {{colorValue}}<br />
+    <br />
+    <label for="pearRadio">Pear:</label>
+    <input id="pearRadio" type="radio" ng-model="fruitValue" value="pear" /><br />
+
+    <label for="peachRadio">Peach:</label>
+    <input id="peachRadio" type="radio" ng-model="fruitValue" value="peach" /><br />
+
+    <label for="apricotRadio">Apricot:</label>
+    <input id="apricotRadio" type="radio" ng-model="fruitValue" value="apricot" /><br />
+    <br />
+    <strong>Selected fruit:</strong> {{fruitValue}}
+  </div>
+</body>
+</html>

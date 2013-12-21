@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+</head>
+
+<body ng-app>
+  <h3>1. Show</h3>
+  <label>Show the square: <input type="checkbox" ng-model="mustShow" /></label><br />
+  <div ng-show="mustShow" style="width: 50px; height: 50px; background-color: red;"></div><br />
+  <br />
+  <h3>2. Hide</h3>
+  <label>Hide the square: <input type="checkbox" ng-model="mustHide" /></label><br />
+  <div ng-hide="mustHide" style="width: 50px; height: 50px; background-color: green;"></div><br />
+  <br />
+</body>
+</html>
