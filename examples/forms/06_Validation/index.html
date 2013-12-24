@@ -43,7 +43,7 @@
                ng-model="textValue"
                ng-minlength="3"
                ng-maxlength="10"
-               ng-pattern="/^[A-Z0-9]+$/" />
+               ng-pattern="/^[A-Z0-9]+$/i" />
       </label><br />
       <strong>Value:</strong> {{textValue}}<br />
       <br />
@@ -58,14 +58,14 @@
       <br />
       <h3>2. Validating a form</h3>
       <form name="testForm" novalidate>
-        <label>Text:
+        <label>Letters Only:
           <input type="text"
                  name="formText"
                  required
                  ng-model="formTextValue"
                  ng-minlength="3"
                  ng-maxlength="10"
-                 ng-pattern="/^[A-Z0-9]+$/" />
+                 ng-pattern="/^[A-Z]+$/i" />
         </label><br />
         <strong>State:</strong> {{getItemState(testForm.formText)}}<br />
         <strong>Error messages:</strong><br />
