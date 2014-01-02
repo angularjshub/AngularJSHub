@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    .logTextAreaSmall
+    {
+      width: 400px;
+      height: 80px;
+    }
+
+    .logTextAreaMedium
+    {
+      width: 400px;
+      height: 150px;
+    }
+
+    .logTextAreaBig
+    {
+      width: 400px;
+      height: 220px;
+    }
+
+    .logTextAreaTall
+    {
+      width: 400px;
+      height: 330px;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. No definition object</h3>
+    <div ngh-no-definition-object="1"></div>
+    <div ngh-no-definition-object="2"></div>
+    <textarea class="logTextAreaSmall">{{noDefObjLog}}</textarea>
+    <br />
+    <h3>2. Post-link function</h3>
+    <div ngh-postlink-function="1"></div>
+    <div ngh-postlink-function="2"></div>
+    <textarea class="logTextAreaSmall">{{postlinkFunctionLog}}</textarea>
+    <br />
+    <h3>3. Pre-link and post-link functions</h3>
+    <div ngh-pre-postlink-function="1"></div>
+    <div ngh-pre-postlink-function="2"></div>
+    <textarea class="logTextAreaMedium">{{prePostlinkFunctionLog}}</textarea>
+    <br />
+    <h3>4. Compile function</h3>
+    <div ngh-compile-function="1"></div>
+    <div ngh-compile-function="2"></div>
+    <textarea class="logTextAreaSmall">{{compileFunctionLog}}</textarea>
+    <br />
+    <h3>5. Compile and post-link functions</h3>
+    <div ngh-compile-postlink-functions="1"></div>
+    <div ngh-compile-postlink-functions="2"></div>
+    <textarea class="logTextAreaMedium">{{compilePostlinkFunctionsLog}}</textarea>
+    <br />
+    <h3>6. Compile, pre-link and post-link functions</h3>
+    <div ngh-compile-pre-postlink-functions="1"></div>
+    <div ngh-compile-pre-postlink-functions="2"></div>
+    <textarea class="logTextAreaMedium">{{compilePrePostlinkFunctionsLog}}</textarea>
+    <br />
+    <h3>7. Nested directives</h3>
+    <div ngh-nested-dir-1>
+      <div ngh-nested-dir-2>
+        <div ngh-nested-dir-3>
+        </div>
+      </div>
+    </div>
+    <textarea class="logTextAreaBig">{{nestedDirectivesLog}}</textarea>
+    <br />
+    <h3>8. Multiple directives on a DOM node</h3>
+    <div ngh-multi-dir-1 ngh-multi-dir-2 ngh-multi-dir-3></div>
+    <textarea class="logTextAreaBig">{{multiDirectivesLog}}</textarea>
+    <br />
+    <h3>9. Complete example (nested directives and multiple directives on a DOM node)</h3>
+    <div ngh-dir-1>
+      <div ngh-dir-2 ngh-dir-3>
+        <div ngh-dir-4 ngh-dir-1>
+        </div>
+      </div>
+      <div ngh-dir-5>
+        <div ngh-dir-6>
+        </div>
+      </div>
+    </div>
+    <textarea class="logTextAreaTall">{{completeExampleLog}}</textarea>
+  </div>
+</body>
+</html>

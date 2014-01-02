@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <div basket-container>
+      <div orange-fruit>
+        <button fruits-checker pear-fruit>Check what we have (1)</button><br />
+        <button fruits-checker pear-fruit apricot-fruit>Check what we have (2)</button><br />
+      </div>
+      <div>
+        <button fruits-checker pear-fruit>Check what we have (3)</button><br />
+      </div>
+    </div>
+    <br />
+    <strong>What do we have?</strong> {{whatWeHave}}
+  </div>
+</body>
+</html>

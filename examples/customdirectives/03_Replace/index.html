@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    .spanBackground
+    {
+      background-color: yellow;
+    }
+
+    .divFrame
+    {
+      border-width: 1px;
+      border-style: solid;
+    }
+
+    .logTextArea
+    {
+      width: 400px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Only the inner HTML of the DOM node is replaced</h3>
+    <div ngh-no-replace-dir>
+      <strong>This content will be replaced</strong>
+      <div>
+        This one will be replaced too
+      </div>
+    </div>
+    <br />
+    <h3>2. The element of the DOM node is replaced and the attributes are merged</h3>
+    <span ngh-replace-dir my-span-attribute my-common-attribute="span value"
+      style="font-weight: bold; color: blue;" class="spanBackground">
+      <strong>This content will be replaced</strong><br />
+      <em>This one will be replaced too</em>
+    </span>
+    <br />
+    This is the DOM node after the compilation:<br />
+    <textarea class="logTextArea">{{nghReplaceDirLog}}</textarea>
+  </div>
+</body>
+</html>

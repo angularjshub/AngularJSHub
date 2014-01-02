@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>Base scope</h3>
+    <label>Scope variable: <input type="text" ng-model="scopeVar"/></label><br />
+    <br />
+    <strong>Scope ID:</strong> {{$id}}<br />
+    <strong>Scope variable:</strong> {{scopeVar}}<br />
+    <br />
+    <h3>1. Transclude: true</h3>
+    <ngh-transclude-true style="background-color: lightblue;">
+      <h4>[Green is the transcluded content]</h4>
+      <label>Scope variable: <input type="text" ng-model="scopeVar"/></label><br />
+      <br />
+      <strong>Scope ID:</strong> {{$id}}<br />
+      <strong>Parent scope ID:</strong> {{$parent.$id}}<br />
+      <strong>Scope variable:</strong> {{scopeVar}}<br />
+    </ngh-transclude-true>
+    <br />
+    <h3>2. Transclude: 'element'</h3>
+    <h3>2.1. Pre-bound scope</h3>
+    <div ngh-transclude-element="1" style="background-color: lightyellow;">
+      <h4>[Yellow is the transcluded content]</h4>
+      <label>Scope variable: <input type="text" ng-model="scopeVar"/></label><br />
+      <br />
+      <strong>Scope ID:</strong> {{$id}}<br />
+      <strong>Parent scope ID:</strong> {{$parent.$id}}<br />
+      <strong>Scope variable:</strong> {{scopeVar}}<br />
+    </div>
+    <br />
+    <h3>2.2. Clone element with pre-bound scope</h3>
+    <div ngh-transclude-element="2" style="background-color: lightyellow;">
+      <h4>[Yellow is the transcluded content]</h4>
+      <label>Scope variable: <input type="text" ng-model="scopeVar"/></label><br />
+      <br />
+      <strong>Scope ID:</strong> {{$id}}<br />
+      <strong>Parent scope ID:</strong> {{$parent.$id}}<br />
+      <strong>Scope variable:</strong> {{scopeVar}}<br />
+    </div>
+    <br />
+    <h3>2.3. Clone element and assign directive's scope</h3>
+    <div ngh-transclude-element="3" style="background-color: lightyellow;">
+      <h4>[Yellow is the transcluded content]</h4>
+      <label>Scope variable: <input type="text" ng-model="scopeVar"/></label><br />
+      <br />
+      <strong>Scope ID:</strong> {{$id}}<br />
+      <strong>Parent scope ID:</strong> {{$parent.$id}}<br />
+      <strong>Scope variable:</strong> {{scopeVar}}<br />
+    </div>
+  </div>
+</body>
+</html>

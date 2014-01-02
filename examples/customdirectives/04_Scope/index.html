@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>Base scope</h3>
+    <label>First name: <input type="text" ng-model="firstName"/></label><br />
+    <label>Last name: <input type="text" ng-model="lastName"/></label><br />
+    <br />
+    <strong>First name:</strong> {{firstName}}<br />
+    <strong>Last name:</strong> {{lastName}}<br />
+    <br />
+    <h3>1. Shared scope</h3>
+    <div ngh-shared-scope-dir></div>
+    <br />
+    <h3>2. Inherited scope</h3>
+    <div ngh-inherited-scope-dir></div>
+    <br />
+    <h3>3. Isolated scope</h3>
+    <div ngh-isolated-scope-dir
+         dir-first-name="Michael"
+         dir-last-name="lastName"
+         dir-update-name-method="updateName(newFirstName, newLastName)">
+    </div>
+    <br />
+    <h3>4. Directives on the same DOM node might share the scope</h3>
+    <strong>Base scope ID:</strong> {{$id}}<br />
+    <br />
+    <h3>4.1. Directives with shared, inherited and isolated scope</h3>
+    <button ngh-shared-scope-tester="1A"
+            ngh-shared-scope-tester-copy="1B"
+            ngh-inherited-scope-tester="1A"
+            ngh-inherited-scope-tester-copy="1B"
+            ngh-isolated-scope-tester="1">Check scope IDs</button><br />
+    <br />
+    <strong>[nghSharedScopeTester] Scope ID:</strong> {{sharedDirScopeId1A}}<br />
+    <strong>[nghSharedScopeTesterCopy] Scope ID:</strong> {{sharedDirScopeId1B}}<br />
+    <strong>[nghInheritedScopeTester] Scope ID:</strong> {{inheritedDirScopeId1A}}<br />
+    <strong>[nghInheritedScopeTesterCopy] Scope ID:</strong> {{inheritedDirScopeId1B}}<br />
+    <strong>[nghIsolatedScopeTester] Scope ID:</strong> {{isolatedDirScopeId1}}<br />
+    <br />
+    <h3>4.2. Directives with shared and isolated scope</h3>
+    <button ngh-shared-scope-tester="2A"
+            ngh-shared-scope-tester-copy="2B"
+            ngh-isolated-scope-tester="2">Check scope IDs</button><br />
+    <br />
+    <strong>[nghSharedScopeTester] Scope ID:</strong> {{sharedDirScopeId2A}}<br />
+    <strong>[nghSharedScopeTesterCopy] Scope ID:</strong> {{sharedDirScopeId2B}}<br />
+    <strong>[nghIsolatedScopeTester] Scope ID:</strong> {{isolatedDirScopeId2}}<br />
+    <br />
+    <h3>4.3. Directives with inherited and isolated scope</h3>
+    <button ngh-inherited-scope-tester="3A"
+            ngh-inherited-scope-tester-copy="3B"
+            ngh-isolated-scope-tester="3">Check scope IDs</button><br />
+    <br />
+    <strong>[nghInheritedScopeTester] Scope ID:</strong> {{inheritedDirScopeId3A}}<br />
+    <strong>[nghInheritedScopeTesterCopy] Scope ID:</strong> {{inheritedDirScopeId3B}}<br />
+    <strong>[nghIsolatedScopeTester] Scope ID:</strong> {{isolatedDirScopeId3}}<br />
+    <br />
+    <h3>4.4. Directives with shared and inherited scope</h3>
+    <button ngh-shared-scope-tester="4A"
+            ngh-shared-scope-tester-copy="4B"
+            ngh-inherited-scope-tester="4A"
+            ngh-inherited-scope-tester-copy="4B">Check scope IDs</button><br />
+    <br />
+    <strong>[nghSharedScopeTester] Scope ID:</strong> {{sharedDirScopeId4A}}<br />
+    <strong>[nghSharedScopeTesterCopy] Scope ID:</strong> {{sharedDirScopeId4B}}<br />
+    <strong>[nghInheritedScopeTester] Scope ID:</strong> {{inheritedDirScopeId4A}}<br />
+    <strong>[nghInheritedScopeTesterCopy] Scope ID:</strong> {{inheritedDirScopeId4B}}<br />
+  </div>
+</body>
+</html>

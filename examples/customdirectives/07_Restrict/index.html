@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Directive as element</h3>
+    <element-dir></element-dir><br />
+    <br />
+    <h3>2. Directive as attribute</h3>
+    <div attribute-dir="attribute value"></div>
+    <br />
+    <h3>3. Directive as class</h3>
+    <div class="class-dir: class value;"></div>
+    <br />
+    <h3>4. Directive as comment</h3>
+    <!-- directive: comment-dir comment value -->
+    <br />
+  </div>
+</body>
+</html>

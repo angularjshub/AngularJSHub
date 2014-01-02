@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs/angular.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    .logTextArea
+    {
+      width: 200px;
+      height: 80px;
+    }
+  </style>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>1. Low, medium and high priority with no terminal directives</h3>
+    <div low-priority="1"
+         medium-priority="1"
+         high-priority="1"></div>
+    <textarea class="logTextArea">{{compilationResult1}}</textarea>
+    <br />
+    <h3>2. Low priority terminal directive</h3>
+    <div low-priority="2"
+         medium-priority="2"
+         high-priority="2"
+         low-priority-terminal="2"></div>
+    <textarea class="logTextArea">{{compilationResult2}}</textarea>
+    <br />
+    <h3>3. Medium priority terminal directive</h3>
+    <div low-priority="3"
+         medium-priority="3"
+         high-priority="3"
+         medium-priority-terminal="3"></div>
+    <textarea class="logTextArea">{{compilationResult3}}</textarea>
+    <br />
+    <h3>4. High priority terminal directive</h3>
+    <div low-priority="4"
+         medium-priority="4"
+         high-priority="4"
+         high-priority-terminal="4"></div>
+    <textarea class="logTextArea">{{compilationResult4}}</textarea>
+    <br />
+  </div>
+</body>
+</html>
