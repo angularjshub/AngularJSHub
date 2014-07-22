@@ -1,0 +1,24 @@
+<strong>Absolute URL (G):</strong> {{$parent.locationAbsUrl}}<br />
+<strong>Protocol (G):</strong> {{$parent.locationProtocol}}<br />
+<strong>Host (G):</strong> {{$parent.locationHost}}<br />
+<strong>Port (G):</strong> {{$parent.locationPort}}<br />
+<br />
+<strong>URL (G/S):</strong> {{$parent.locationUrl}}<br />
+<button ng-click="$parent.setUrl()">Set URL</button>
+<label>Replace: <input type="checkbox" ng-model="$parent.replaceUrl" /></label><br />
+<br />
+<strong>Path (G/S):</strong> {{$parent.locationPath}}<br />
+<button ng-click="$parent.setPath()">Set Path</button><br />
+<br />
+<strong>Search (G/S):</strong> {{$parent.locationSearch}}<br />
+<button ng-click="$parent.setSearch(1)">Set Search 1: single parameter and single value</button><br />
+<button ng-click="$parent.setSearch(2)">Set Search 2: single parameter and multiple values</button><br />
+<button ng-click="$parent.setSearch(3)">Set Search 3: remove parameter</button><br />
+<button ng-click="$parent.setSearch(4)">Set Search 4: hash object (multiple parameters)</button><br />
+<button ng-click="$parent.setSearch(5)">Set Search 5: clear search parameters</button><br />
+<br />
+<strong>Hash (G/S):</strong> {{$parent.locationHash}}<br />
+<button ng-click="$parent.setHash()">Set Hash</button><br />
+<br />
+<strong>locationChangeStartCounter:</strong> {{$parent.locationChangeStartCounter}}<br />
+<strong>locationChangeSuccessCounter:</strong> {{$parent.locationChangeSuccessCounter}}

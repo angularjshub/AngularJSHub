@@ -1,20 +1,19 @@
-<a href="http://github.com/angular/angular.js/edit/master/docs/content/guide/directive.ngdoc" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable=""></code>
-<div><span class="hint"></span>
-</div>
-</h1>
-<div><div class="directives-page"><h2 id="creating-custom-directives">Creating Custom Directives</h2>
+<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/directive.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+
+
+<h1 id="creating-custom-directives">Creating Custom Directives</h1>
 <div class="alert alert-warning">
 <strong>Note:</strong> this guide is targeted towards developers who are already familiar with AngularJS basics.
-If you&#39;re just getting started, we recommend the <a href="tutorial/index">tutorial</a> first.
-If you&#39;re looking for the <strong>directives API</strong>, we recently moved it to <a href="api/ng.$compile"><code><code>$compile</code></code></a>.
+If you&#39;re just getting started, we recommend the <a href="tutorial/">tutorial</a> first.
+If you&#39;re looking for the <strong>directives API</strong>, we recently moved it to <a href="api/ng/service/$compile"><code>$compile</code></a>.
 </div>
 
 
 <p>This document explains when you&#39;d want to create your own directives in your AngularJS app, and
 how to implement them.</p>
-<h3 id="creating-custom-directives_what-are-directives">What are Directives?</h3>
+<h2 id="what-are-directives-">What are Directives?</h2>
 <p>At a high level, directives are markers on a DOM element (such as an attribute, element
-name, or CSS class) that tell AngularJS&#39;s <strong>HTML compiler</strong> (<a href="api/ng.$compile"><code><code>$compile</code></code></a>) to
+name, comment or CSS class) that tell AngularJS&#39;s <strong>HTML compiler</strong> (<a href="api/ng/service/$compile"><code>$compile</code></a>) to
 attach a specified behavior to that DOM element or even transform the DOM element and its children.</p>
 <p>Angular comes with a set of these directives built-in, like <code>ngBind</code>, <code>ngModel</code>, and <code>ngView</code>.
 Much like you create controllers and services, you can create your own directives for Angular to use.
@@ -30,16 +29,16 @@ mirrors the process of compiling source code in
 </div>
 
 
-<h3 id="creating-custom-directives_matching-directives">Matching Directives</h3>
+<h2 id="matching-directives">Matching Directives</h2>
 <p>Before we can write a directive, we need to know how Angular&#39;s <a href="guide/compiler">HTML compiler</a>
 determines when to use a given directive.</p>
 <p>In the following example, we say that the <code>&lt;input&gt;</code> element <strong>matches</strong> the <code>ngModel</code> directive.</p>
-<pre><code class="lang-javascript">&lt;input ng-model=&quot;foo&quot;&gt;</code></pre>
+<pre><code class="lang-html">&lt;input ng-model=&quot;foo&quot;&gt;</code></pre>
 <p>The following also <strong>matches</strong> <code>ngModel</code>:</p>
-<pre><code class="lang-javascript">&lt;input data-ng:model=&quot;foo&quot;&gt;</code></pre>
+<pre><code class="lang-html">&lt;input data-ng:model=&quot;foo&quot;&gt;</code></pre>
 <p>Angular <strong>normalizes</strong> an element&#39;s tag and attribute name to determine which elements match which
 directives. We typically refer to directives by their case-sensitive
-<a href="http://en.wikipedia.org/wiki/CamelCase">camelCase</a> <strong>normalized</strong> name (e.g. <code>ngModel</code>). 
+<a href="http://en.wikipedia.org/wiki/CamelCase">camelCase</a> <strong>normalized</strong> name (e.g. <code>ngModel</code>).
 However, since HTML is case-insensitive, we refer to directives in the DOM by lower-case
 forms, typically using <a href="http://en.wikipedia.org/wiki/Letter_case#Computers">dash-delimited</a>
 attributes on DOM elements (e.g. <code>ng-model</code>).</p>
@@ -49,41 +48,44 @@ attributes on DOM elements (e.g. <code>ng-model</code>).</p>
 <li>Convert the <code>:</code>, <code>-</code>, or <code>_</code>-delimited name to <code>camelCase</code>.</li>
 </ol>
 <p>Here are some equivalent examples of elements that match <code>ngBind</code>:</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsBindExample" source-edit-deps="angular.js script.js" source-edit-html="index.html-235" source-edit-css="" source-edit-js="script.js-234" source-edit-json="" source-edit-unit="" source-edit-scenario="scenario.js-236"></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-235" ng-html-wrap="docsBindExample angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-235">
-    <div ng-controller="Ctrl1">
-      Hello <input ng-model='name'> <hr/>
-      <span ng-bind="name"></span> <br/>
-      <span ng:bind="name"></span> <br/>
-      <span ng_bind="name"></span> <br/>
-      <span data-ng-bind="name"></span> <br/>
-      <span x-ng-bind="name"></span> <br/>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example77')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example77"
+      module="docsBindExample">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsBindExample&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.name = &#39;Max Karl Ernst Ludwig Planck (April 23, 1858 &ndash; October 4, 1947)&#39;;&#10;  }]);</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  Hello &lt;input ng-model=&#39;name&#39;&gt; &lt;hr/&gt;&#10;  &lt;span ng-bind=&quot;name&quot;&gt;&lt;/span&gt; &lt;br/&gt;&#10;  &lt;span ng:bind=&quot;name&quot;&gt;&lt;/span&gt; &lt;br/&gt;&#10;  &lt;span ng_bind=&quot;name&quot;&gt;&lt;/span&gt; &lt;br/&gt;&#10;  &lt;span data-ng-bind=&quot;name&quot;&gt;&lt;/span&gt; &lt;br/&gt;&#10;  &lt;span x-ng-bind=&quot;name&quot;&gt;&lt;/span&gt; &lt;br/&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractorTest.js"
+      language="js"
+      type="js">
+      <pre><code>it(&#39;should show off bindings&#39;, function() {&#10;  expect(element(by.css(&#39;div[ng-controller=&quot;Controller&quot;] span[ng-bind]&#39;)).getText())&#10;      .toBe(&#39;Max Karl Ernst Ludwig Planck (April 23, 1858 &ndash; October 4, 1947)&#39;);&#10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example77/index.html" name="example-example77"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-234"></pre>
-<script type="text/ng-template" id="script.js-234">
-    angular.module('docsBindExample', [])
-      .controller('Ctrl1', function Ctrl1($scope) {
-        $scope.name = 'Max Karl Ernst Ludwig Planck (April 23, 1858 – October 4, 1947)';
-      });
-  </script>
-</div>
-<div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-236"></pre>
-<script type="text/ng-template" id="scenario.js-236">
-    it('should show off bindings', function() {
-      expect(element('div[ng-controller="Ctrl1"] span[ng-bind]').text())
-        .toBe('Max Karl Ernst Ludwig Planck (April 23, 1858 – October 4, 1947)');
-    });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsBindExample" ng-set-html="index.html-235" ng-eval-javascript="script.js-234"></div>
+
+</p>
 <div class="alert alert-success">
 <strong>Best Practice:</strong> Prefer using the dash-delimited format (e.g. <code>ng-bind</code> for <code>ngBind</code>).
 If you want to use an HTML validating tool, you can instead use the <code>data</code>-prefixed version (e.g.
@@ -107,21 +109,21 @@ Doing so generally makes it easier to determine what directives a given element 
 <div class="alert alert-success">
 <strong>Best Practice:</strong> Comment directives were commonly used in places where the DOM API limits the
 ability to create directives that spanned multiple elements (e.g. inside <code>&lt;table&gt;</code> elements).
-AngularJS 1.2 introduces <a href="api/ng.directive:ngRepeat"><code><code>ng-repeat-start</code> and <code>ng-repeat-end</code></code></a>
+AngularJS 1.2 introduces <a href="api/ng/directive/ngRepeat"><code>ng-repeat-start</code> and <code>ng-repeat-end</code></a>
 as a better solution to this problem. Developers are encouraged to use this over custom comment
 directives when possible.
 </div>
 
 
 
-<h4 id="creating-custom-directives_demo_text-and-attribute-bindings">Text and attribute bindings</h4>
-<p>During the compilation process the <a href="api/ng.$compile"><code>compiler</code></a> matches text and attributes
-using the <a href="api/ng.$interpolate"><code>$interpolate</code></a> service to see if they contain embedded
-expressions. These expressions are registered as <a href="api/ng.$rootScope.Scope#methods_$watch"><code>watches</code></a>
-and will update as part of normal <a href="api/ng.$rootScope.Scope#methods_$digest"><code>digest</code></a> cycle. An
+<h3 id="text-and-attribute-bindings">Text and attribute bindings</h3>
+<p>During the compilation process the <a href="api/ng/service/$compile">compiler</a> matches text and attributes
+using the <a href="api/ng/service/$interpolate">$interpolate</a> service to see if they contain embedded
+expressions. These expressions are registered as <a href="api/ng/type/$rootScope.Scope#$watch">watches</a>
+and will update as part of normal <a href="api/ng/type/$rootScope.Scope#$digest">digest</a> cycle. An
 example of interpolation is shown below:</p>
 <pre><code class="lang-html">&lt;a ng-href=&quot;img/{{username}}.jpg&quot;&gt;Hello {{username}}!&lt;/a&gt;</code></pre>
-<h4 id="creating-custom-directives_demo_-attribute-bindings"><code>ngAttr</code> attribute bindings</h4>
+<h3 id="-ngattr-attribute-bindings"><code>ngAttr</code> attribute bindings</h3>
 <p>Web browsers are sometimes picky about what values they consider valid for attributes.</p>
 <p>For example, considering this template:</p>
 <pre><code class="lang-html">&lt;svg&gt;
@@ -139,17 +141,17 @@ you to bind to attributes that would otherwise be eagerly processed by browsers
 <pre><code class="lang-html">&lt;svg&gt;
   &lt;circle ng-attr-cx=&quot;{{cx}}&quot;&gt;&lt;/circle&gt;
 &lt;/svg&gt;</code></pre>
-<h3 id="creating-custom-directives_creating-directives">Creating Directives</h3>
-<p>First let&#39;s talk about the API for registering directives. Much like controllers, directives are
-registered on modules. To register a directive, you use the <code>module.directive</code> API.
-<code>module.directive</code> takes the
+<h2 id="creating-directives">Creating Directives</h2>
+<p>First let&#39;s talk about the <a href="api/ng/provider/$compileProvider#directive">API for registering directives</a>. Much like
+controllers, directives are registered on modules. To register a directive, you use the
+<code>module.directive</code> API. <code>module.directive</code> takes the
 <a href="guide/directive#creating-custom-directives_matching-directives">normalized</a> directive name
 followed by a <strong>factory function.</strong> This factory function should return an object with the different
 options to tell <code>$compile</code> how the directive should behave when matched.</p>
 <p>The factory function is invoked only once when the
-<a href="api/ng.$compile"><code>compiler</code></a> matches the directive for the first time. You can perform any
+<a href="api/ng/service/$compile">compiler</a> matches the directive for the first time. You can perform any
 initialization work here. The function is invoked using
-<a href="api/AUTO.$injector#methods_invoke"><code>$injector.invoke</code></a> which makes it injectable just like a
+<a href="api/auto/service/$injector#invoke">$injector.invoke</a> which makes it injectable just like a
 controller.</p>
 <div class="alert alert-success">
 <strong>Best Practice:</strong> Prefer using the definition object over returning a function.
@@ -167,43 +169,44 @@ version of Angular.
 </div>
 
 <p>For the following examples, we&#39;ll use the prefix <code>my</code> (e.g. <code>myCustomer</code>).</p>
-<h4 id="creating-custom-directives_creating-directives_template-expanding-directive">Template-expanding directive</h4>
+<h3 id="template-expanding-directive">Template-expanding directive</h3>
 <p>Let&#39;s say you have a chunk of your template that represents a customer&#39;s information. This template
 is repeated many times in your code. When you change it in one place, you have to change it in
 several others. This is a good opportunity to use a directive to simplify your template.</p>
 <p>Let&#39;s create a directive that simply replaces its contents with a static template:</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsSimpleDirective" source-edit-deps="angular.js script.js" source-edit-html="index.html-238" source-edit-css="" source-edit-js="script.js-237" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-238" ng-html-wrap="docsSimpleDirective angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-238">
-    <div ng-controller="Ctrl">
-      <div my-customer></div>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example78')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example78"
+      module="docsSimpleDirective">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsSimpleDirective&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.customer = {&#10;      name: &#39;Naomi&#39;,&#10;      address: &#39;1600 Amphitheatre&#39;&#10;    };&#10;  }])&#10;  .directive(&#39;myCustomer&#39;, function() {&#10;    return {&#10;      template: &#39;Name: {{customer.name}} Address: {{customer.address}}&#39;&#10;    };&#10;  });</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;div my-customer&gt;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example78/index.html" name="example-example78"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-237"></pre>
-<script type="text/ng-template" id="script.js-237">
-    angular.module('docsSimpleDirective', [])
-      .controller('Ctrl', function($scope) {
-        $scope.customer = {
-          name: 'Naomi',
-          address: '1600 Amphitheatre'
-        };
-      })
-      .directive('myCustomer', function() {
-        return {
-          template: 'Name: {{customer.name}} Address: {{customer.address}}'
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsSimpleDirective" ng-set-html="index.html-238" ng-eval-javascript="script.js-237"></div>
+
+</p>
 <p>Notice that we have bindings in this directive. After <code>$compile</code> compiles and links
-<code>&lt;div my-customer&gt;
-&lt;/div&gt;</code>, it will try to match directives on the element&#39;s children. This means you
+<code>&lt;div my-customer&gt;&lt;/div&gt;</code>, it will try to match directives on the element&#39;s children. This means you
 can compose directives of other directives. We&#39;ll see how to do that in
 <a href="guide/directive#creating-custom-directives_demo_creating-directives-that-communicate">an example</a>
 below.</p>
@@ -216,95 +219,104 @@ its own HTML file and load it with the <code>templateUrl</code> option.
 
 <p>If you are familiar with <code>ngInclude</code>, <code>templateUrl</code> works just like it. Here&#39;s the same example
 using <code>templateUrl</code> instead:</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsTemplateUrlDirective" source-edit-deps="angular.js script.js" source-edit-html="index.html-240 my-customer.html" source-edit-css="" source-edit-js="script.js-239" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-240" ng-html-wrap="docsTemplateUrlDirective angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-240">
-    <div ng-controller="Ctrl">
-      <div my-customer></div>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example79')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example79"
+      module="docsTemplateUrlDirective">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsTemplateUrlDirective&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.customer = {&#10;      name: &#39;Naomi&#39;,&#10;      address: &#39;1600 Amphitheatre&#39;&#10;    };&#10;  }])&#10;  .directive(&#39;myCustomer&#39;, function() {&#10;    return {&#10;      templateUrl: &#39;my-customer.html&#39;&#10;    };&#10;  });</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;div my-customer&gt;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="my-customer.html"
+      language="html"
+      type="html">
+      <pre><code>Name: {{customer.name}} Address: {{customer.address}}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example79/index.html" name="example-example79"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="my-customer.html">
-<pre class="prettyprint linenums" ng-set-text="my-customer.html"></pre>
-<script type="text/ng-template" id="my-customer.html">
-    Name: {{customer.name}} Address: {{customer.address}}
-  </script>
-</div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-239"></pre>
-<script type="text/ng-template" id="script.js-239">
-    angular.module('docsTemplateUrlDirective', [])
-      .controller('Ctrl', function($scope) {
-        $scope.customer = {
-          name: 'Naomi',
-          address: '1600 Amphitheatre'
-        };
-      })
-      .directive('myCustomer', function() {
-        return {
-          templateUrl: 'my-customer.html'
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsTemplateUrlDirective" ng-set-html="index.html-240" ng-eval-javascript="script.js-239"></div>
+
+</p>
 <p>Great! But what if we wanted to have our directive match the tag name <code>&lt;my-customer&gt;</code> instead?
-If we simply put a <code>&lt;my-customer&gt;</code> element into the HMTL, it doesn&#39;t work.</p>
-<div class="alert alert-waring">
+If we simply put a <code>&lt;my-customer&gt;</code> element into the HTML, it doesn&#39;t work.</p>
+<div class="alert alert-warning">
 <strong>Note:</strong> When you create a directive, it is restricted to attribute only by default. In order to
-create directives that are triggered by element name, you need to use the <code>restrict</code> option.
+create directives that are triggered by element or class name, you need to use the <code>restrict</code> option.
 </div>
 
 <p>The <code>restrict</code> option is typically set to:</p>
 <ul>
 <li><code>&#39;A&#39;</code> - only matches attribute name</li>
 <li><code>&#39;E&#39;</code> - only matches element name</li>
-<li><code>&#39;AE&#39;</code> - matches either attribute or element name</li>
+<li><code>&#39;C&#39;</code> - only matches class name</li>
+</ul>
+<p>These restrictions can all be combined as needed:</p>
+<ul>
+<li><code>&#39;AEC&#39;</code> - matches either attribute or element or class name</li>
 </ul>
 <p>Let&#39;s change our directive to use <code>restrict: &#39;E&#39;</code>:</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsRestrictDirective" source-edit-deps="angular.js script.js" source-edit-html="index.html-242 my-customer.html" source-edit-css="" source-edit-js="script.js-241" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-242" ng-html-wrap="docsRestrictDirective angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-242">
-    <div ng-controller="Ctrl">
-      <my-customer></my-customer>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example80')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example80"
+      module="docsRestrictDirective">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsRestrictDirective&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.customer = {&#10;      name: &#39;Naomi&#39;,&#10;      address: &#39;1600 Amphitheatre&#39;&#10;    };&#10;  }])&#10;  .directive(&#39;myCustomer&#39;, function() {&#10;    return {&#10;      restrict: &#39;E&#39;,&#10;      templateUrl: &#39;my-customer.html&#39;&#10;    };&#10;  });</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;my-customer&gt;&lt;/my-customer&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="my-customer.html"
+      language="html"
+      type="html">
+      <pre><code>Name: {{customer.name}} Address: {{customer.address}}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example80/index.html" name="example-example80"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="my-customer.html">
-<pre class="prettyprint linenums" ng-set-text="my-customer.html"></pre>
-<script type="text/ng-template" id="my-customer.html">
-    Name: {{customer.name}} Address: {{customer.address}}
-  </script>
-</div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-241"></pre>
-<script type="text/ng-template" id="script.js-241">
-    angular.module('docsRestrictDirective', [])
-      .controller('Ctrl', function($scope) {
-        $scope.customer = {
-          name: 'Naomi',
-          address: '1600 Amphitheatre'
-        };
-      })
-      .directive('myCustomer', function() {
-        return {
-          restrict: 'E',
-          templateUrl: 'my-customer.html'
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsRestrictDirective" ng-set-html="index.html-242" ng-eval-javascript="script.js-241"></div>
+
+</p>
 <p>For more on the
-<a href="api/ng.$compile#description_comprehensive-directive-api_directive-definition-object"><code><code>restrict</code></code></a>
+<a href="api/ng/service/$compile#description_comprehensive-directive-api_directive-definition-object"><code>restrict</code></a>
 property, see the
-<a href="api/ng.$compile#description_comprehensive-directive-api_directive-definition-object"><code>API docs</code></a>.</p>
+<a href="api/ng/service/$compile#description_comprehensive-directive-api_directive-definition-object">API docs</a>.</p>
 <div class="alert alert-info">
 <strong>When should I use an attribute versus an element?</strong>
 
@@ -317,100 +329,91 @@ Use an attribute when you are decorating an existing element with new functional
 <p>Using an element for the <code>myCustomer</code> directive is clearly the right choice because you&#39;re not
 decorating an element with some &quot;customer&quot; behavior; you&#39;re defining the core behavior of the
 element as a customer component.</p>
-<h4 id="creating-custom-directives_demo_isolating-the-scope-of-a-directive">Isolating the Scope of a Directive</h4>
+<h3 id="isolating-the-scope-of-a-directive">Isolating the Scope of a Directive</h3>
 <p>Our <code>myCustomer</code> directive above is great, but it has a fatal flaw. We can only use it once within a
 given scope.</p>
 <p>In its current implementation, we&#39;d need to create a different controller each time In order to
 re-use such a directive:</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsScopeProblemExample" source-edit-deps="angular.js script.js" source-edit-html="index.html-244 my-customer.html" source-edit-css="" source-edit-js="script.js-243" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-244" ng-html-wrap="docsScopeProblemExample angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-244">
-    <div ng-controller="NaomiCtrl">
-      <my-customer></my-customer>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example81')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example81"
+      module="docsScopeProblemExample">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsScopeProblemExample&#39;, [])&#10;  .controller(&#39;NaomiController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.customer = {&#10;      name: &#39;Naomi&#39;,&#10;      address: &#39;1600 Amphitheatre&#39;&#10;    };&#10;  }])&#10;  .controller(&#39;IgorController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.customer = {&#10;      name: &#39;Igor&#39;,&#10;      address: &#39;123 Somewhere&#39;&#10;    };&#10;  }])&#10;  .directive(&#39;myCustomer&#39;, function() {&#10;    return {&#10;      restrict: &#39;E&#39;,&#10;      templateUrl: &#39;my-customer.html&#39;&#10;    };&#10;  });</code></pre>
     </div>
-    <hr>
-    <div ng-controller="IgorCtrl">
-      <my-customer></my-customer>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;NaomiController&quot;&gt;&#10;  &lt;my-customer&gt;&lt;/my-customer&gt;&#10;&lt;/div&gt;&#10;&lt;hr&gt;&#10;&lt;div ng-controller=&quot;IgorController&quot;&gt;&#10;  &lt;my-customer&gt;&lt;/my-customer&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="my-customer.html"
+      language="html"
+      type="html">
+      <pre><code>Name: {{customer.name}} Address: {{customer.address}}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example81/index.html" name="example-example81"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="my-customer.html">
-<pre class="prettyprint linenums" ng-set-text="my-customer.html"></pre>
-<script type="text/ng-template" id="my-customer.html">
-    Name: {{customer.name}} Address: {{customer.address}}
-  </script>
-</div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-243"></pre>
-<script type="text/ng-template" id="script.js-243">
-    angular.module('docsScopeProblemExample', [])
-      .controller('NaomiCtrl', function($scope) {
-        $scope.customer = {
-          name: 'Naomi',
-          address: '1600 Amphitheatre'
-        };
-      })
-      .controller('IgorCtrl', function($scope) {
-        $scope.customer = {
-          name: 'Igor',
-          address: '123 Somewhere'
-        };
-      })
-      .directive('myCustomer', function() {
-        return {
-          restrict: 'E',
-          templateUrl: 'my-customer.html'
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsScopeProblemExample" ng-set-html="index.html-244" ng-eval-javascript="script.js-243"></div>
+
+</p>
 <p>This is clearly not a great solution.</p>
 <p>What we want to be able to do is separate the scope inside a directive from the scope
 outside, and then map the outer scope to a directive&#39;s inner scope. We can do this by creating what
 we call an <strong>isolate scope</strong>. To do this, we can use a directive&#39;s <code>scope</code> option:</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsIsolateScopeDirective" source-edit-deps="angular.js script.js" source-edit-html="index.html-246 my-customer-iso.html" source-edit-css="" source-edit-js="script.js-245" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-246" ng-html-wrap="docsIsolateScopeDirective angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-246">
-    <div ng-controller="Ctrl">
-      <my-customer info="naomi"></my-customer>
-      <hr>
-      <my-customer info="igor"></my-customer>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example82')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example82"
+      module="docsIsolateScopeDirective">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsIsolateScopeDirective&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.naomi = { name: &#39;Naomi&#39;, address: &#39;1600 Amphitheatre&#39; };&#10;    $scope.igor = { name: &#39;Igor&#39;, address: &#39;123 Somewhere&#39; };&#10;  }])&#10;  .directive(&#39;myCustomer&#39;, function() {&#10;    return {&#10;      restrict: &#39;E&#39;,&#10;      scope: {&#10;        customerInfo: &#39;=info&#39;&#10;      },&#10;      templateUrl: &#39;my-customer-iso.html&#39;&#10;    };&#10;  });</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;my-customer info=&quot;naomi&quot;&gt;&lt;/my-customer&gt;&#10;  &lt;hr&gt;&#10;  &lt;my-customer info=&quot;igor&quot;&gt;&lt;/my-customer&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="my-customer-iso.html"
+      language="html"
+      type="html">
+      <pre><code>Name: {{customerInfo.name}} Address: {{customerInfo.address}}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example82/index.html" name="example-example82"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="my-customer-iso.html">
-<pre class="prettyprint linenums" ng-set-text="my-customer-iso.html"></pre>
-<script type="text/ng-template" id="my-customer-iso.html">
-    Name: {{customerInfo.name}} Address: {{customerInfo.address}}
-  </script>
-</div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-245"></pre>
-<script type="text/ng-template" id="script.js-245">
-    angular.module('docsIsolateScopeDirective', [])
-      .controller('Ctrl', function($scope) {
-        $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
-        $scope.igor = { name: 'Igor', address: '123 Somewhere' };
-      })
-      .directive('myCustomer', function() {
-        return {
-          restrict: 'E',
-          scope: {
-            customerInfo: '=info'
-          },
-          templateUrl: 'my-customer-iso.html'
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsIsolateScopeDirective" ng-set-html="index.html-246" ng-eval-javascript="script.js-245"></div>
+
+</p>
 <p>Looking at <code>index.html</code>, the first <code>&lt;my-customer&gt;</code> element binds the <code>info</code> attribute to <code>naomi</code>,
 which we have exposed on our controller&#39;s scope. The second binds <code>info</code> to <code>igor</code>.</p>
 <p>Let&#39;s take a closer look at the scope option:</p>
@@ -444,46 +447,44 @@ scope: {
 scope has another effect.</p>
 <p>We can show this by adding another property, <code>vojta</code>, to our scope and trying to access it from
 within our directive&#39;s template:</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsIsolationExample" source-edit-deps="angular.js script.js" source-edit-html="index.html-248 my-customer-plus-vojta.html" source-edit-css="" source-edit-js="script.js-247" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-248" ng-html-wrap="docsIsolationExample angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-248">
-    <div ng-controller="Ctrl">
-      <my-customer info="naomi"></my-customer>
-    </div>
-  </script>
-</div>
-<div class="tab-pane" title="my-customer-plus-vojta.html">
-<pre class="prettyprint linenums" ng-set-text="my-customer-plus-vojta.html"></pre>
-<script type="text/ng-template" id="my-customer-plus-vojta.html">
-    Name: {{customerInfo.name}} Address: {{customerInfo.address}}
-    <hr>
-    Name: {{vojta.name}} Address: {{vojta.address}}
-  </script>
-</div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-247"></pre>
-<script type="text/ng-template" id="script.js-247">
-    angular.module('docsIsolationExample', [])
-      .controller('Ctrl', function($scope) {
-        $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+<p>
 
-        $scope.vojta = { name: 'Vojta', address: '3456 Somewhere Else' };
-      })
-      .directive('myCustomer', function() {
-        return {
-          restrict: 'E',
-          scope: {
-            customerInfo: '=info'
-          },
-          templateUrl: 'my-customer-plus-vojta.html'
-        };
-      });
-  </script>
+<div>
+  <a ng-click="openPlunkr('examples/example-example83')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example83"
+      module="docsIsolationExample">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsIsolationExample&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.naomi = { name: &#39;Naomi&#39;, address: &#39;1600 Amphitheatre&#39; };&#10;&#10;    $scope.vojta = { name: &#39;Vojta&#39;, address: &#39;3456 Somewhere Else&#39; };&#10;  }])&#10;  .directive(&#39;myCustomer&#39;, function() {&#10;    return {&#10;      restrict: &#39;E&#39;,&#10;      scope: {&#10;        customerInfo: &#39;=info&#39;&#10;      },&#10;      templateUrl: &#39;my-customer-plus-vojta.html&#39;&#10;    };&#10;  });</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;my-customer info=&quot;naomi&quot;&gt;&lt;/my-customer&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="my-customer-plus-vojta.html"
+      language="html"
+      type="html">
+      <pre><code>Name: {{customerInfo.name}} Address: {{customerInfo.address}}&#10;&lt;hr&gt;&#10;Name: {{vojta.name}} Address: {{vojta.address}}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example83/index.html" name="example-example83"></iframe>
+  </div>
 </div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsIsolationExample" ng-set-html="index.html-248" ng-eval-javascript="script.js-247"></div>
+
+</p>
 <p>Notice that <code>{{vojta.name}}</code> and <code>{{vojta.address}}</code> are empty, meaning they are undefined.
 Although we defined <code>vojta</code> in the controller, it&#39;s not available within the directive.</p>
 <p>As the name suggests, the <strong>isolate scope</strong> of the directive isolates everything except models that
@@ -492,7 +493,7 @@ components because it prevents a component from changing your model state except
 that you explicitly pass in.</p>
 <div class="alert alert-warning">
 <strong>Note:</strong> Normally, a scope prototypically inherits from its parent. An isolated scope does not.
-See the <a href="guide/directive#creating-custom-directives_demo_isolating-the-scope-of-a-directive">&quot;Isolating the Scope of a Directive&quot;</a> section for more information about isolate scopes.
+See the <a href="api/ng/service/$compile#directive-definition-object">&quot;Directive Definition Object - scope&quot;</a> section for more information about isolate scopes.
 </div>
 
 <div class="alert alert-success">
@@ -501,7 +502,7 @@ want to reuse throughout your app.
 </div>
 
 
-<h4 id="creating-custom-directives_demo_creating-a-directive-that-manipulates-the-dom">Creating a Directive that Manipulates the DOM</h4>
+<h3 id="creating-a-directive-that-manipulates-the-dom">Creating a Directive that Manipulates the DOM</h3>
 <p>In this example we will build a directive that displays the current time.
 Once a second, it updates the DOM to reflect the current time.</p>
 <p>Directives that want to modify the DOM typically use the <code>link</code> option.
@@ -510,64 +511,45 @@ where:</p>
 <ul>
 <li><code>scope</code> is an Angular scope object.</li>
 <li><code>element</code> is the jqLite-wrapped element that this directive matches.</li>
-<li><code>attrs</code> is an object with the normalized attribute names and their corresponding values.</li>
+<li><code>attrs</code> is a hash object with key-value pairs of normalized attribute names and their
+corresponding attribute values.</li>
 </ul>
 <p>In our <code>link</code> function, we want to update the displayed time once a second, or whenever a user
 changes the time formatting string that our directive binds to. We will use the <code>$interval</code> service
 to call a handler on a regular basis. This is easier than using <code>$timeout</code> but also works better with
-end 2 end testing, where we want to ensure that all $timeouts have completed before completing the test.
+end-to-end testing, where we want to ensure that all $timeouts have completed before completing the test.
 We also want to remove the <code>$interval</code> if the directive is deleted so we don&#39;t introduce a memory leak.</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsTimeDirective" source-edit-deps="angular.js script.js" source-edit-html="index.html-250" source-edit-css="" source-edit-js="script.js-249" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-250" ng-html-wrap="docsTimeDirective angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-250">
-    <div ng-controller="Ctrl2">
-      Date format: <input ng-model="format"> <hr/>
-      Current time is: <span my-current-time="format"></span>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example84')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example84"
+      module="docsTimeDirective">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsTimeDirective&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.format = &#39;M/d/yy h:mm:ss a&#39;;&#10;  }])&#10;  .directive(&#39;myCurrentTime&#39;, [&#39;$interval&#39;, &#39;dateFilter&#39;, function($interval, dateFilter) {&#10;&#10;    function link(scope, element, attrs) {&#10;      var format,&#10;          timeoutId;&#10;&#10;      function updateTime() {&#10;        element.text(dateFilter(new Date(), format));&#10;      }&#10;&#10;      scope.$watch(attrs.myCurrentTime, function(value) {&#10;        format = value;&#10;        updateTime();&#10;      });&#10;&#10;      element.on(&#39;$destroy&#39;, function() {&#10;        $interval.cancel(timeoutId);&#10;      });&#10;&#10;      // start the UI update process; save the timeoutId for canceling&#10;      timeoutId = $interval(function() {&#10;        updateTime(); // update DOM&#10;      }, 1000);&#10;    }&#10;&#10;    return {&#10;      link: link&#10;    };&#10;  }]);</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  Date format: &lt;input ng-model=&quot;format&quot;&gt; &lt;hr/&gt;&#10;  Current time is: &lt;span my-current-time=&quot;format&quot;&gt;&lt;/span&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example84/index.html" name="example-example84"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-249"></pre>
-<script type="text/ng-template" id="script.js-249">
-    angular.module('docsTimeDirective', [])
-      .controller('Ctrl2', function($scope) {
-        $scope.format = 'M/d/yy h:mm:ss a';
-      })
-      .directive('myCurrentTime', function($interval, dateFilter) {
 
-        function link(scope, element, attrs) {
-          var format,
-              timeoutId;
-
-          function updateTime() {
-            element.text(dateFilter(new Date(), format));
-          }
-
-          scope.$watch(attrs.myCurrentTime, function(value) {
-            format = value;
-            updateTime();
-          });
-
-          element.on('$destroy', function() {
-            $interval.cancel(timeoutId);
-          });
-
-          // start the UI update process; save the timeoutId for canceling
-          timeoutId = $interval(function() {
-            updateTime(); // update DOM
-          }, 1000);
-        }
-
-        return {
-          link: link
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsTimeDirective" ng-set-html="index.html-250" ng-eval-javascript="script.js-249"></div>
+</p>
 <p>There are a couple of things to note here.
 Just like the <code>module.controller</code> API, the function argument in <code>module.directive</code> is dependency
 injected. Because of this, we can use <code>$interval</code> and <code>dateFilter</code> inside our directive&#39;s <code>link</code>
@@ -587,90 +569,92 @@ directive is removed.
 </div>
 
 
-<h4 id="creating-custom-directives_demo_creating-a-directive-that-wraps-other-elements">Creating a Directive that Wraps Other Elements</h4>
+<h3 id="creating-a-directive-that-wraps-other-elements">Creating a Directive that Wraps Other Elements</h3>
 <p>We&#39;ve seen that you can pass in models to a directive using the isolate scope, but sometimes
 it&#39;s desirable to be able to pass in an entire template rather than a string or an object.
 Let&#39;s say that we want to create a &quot;dialog box&quot; component. The dialog box should be able to
 wrap any arbitrary content.</p>
 <p>To do this, we need to use the <code>transclude</code> option.</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsTransclusionDirective" source-edit-deps="angular.js script.js" source-edit-html="index.html-252 my-dialog.html" source-edit-css="" source-edit-js="script.js-251" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-252" ng-html-wrap="docsTransclusionDirective angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-252">
-    <div ng-controller="Ctrl">
-      <my-dialog>Check out the contents, {{name}}!</my-dialog>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example85')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example85"
+      module="docsTransclusionDirective">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsTransclusionDirective&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.name = &#39;Tobias&#39;;&#10;  }])&#10;  .directive(&#39;myDialog&#39;, function() {&#10;    return {&#10;      restrict: &#39;E&#39;,&#10;      transclude: true,&#10;      templateUrl: &#39;my-dialog.html&#39;&#10;    };&#10;  });</code></pre>
     </div>
-  </script>
-</div>
-<div class="tab-pane" title="my-dialog.html">
-<pre class="prettyprint linenums" ng-set-text="my-dialog.html"></pre>
-<script type="text/ng-template" id="my-dialog.html">
-    <div class="alert" ng-transclude>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;my-dialog&gt;Check out the contents, {{name}}!&lt;/my-dialog&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="my-dialog.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div class=&quot;alert&quot; ng-transclude&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example85/index.html" name="example-example85"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-251"></pre>
-<script type="text/ng-template" id="script.js-251">
-    angular.module('docsTransclusionDirective', [])
-      .controller('Ctrl', function($scope) {
-        $scope.name = 'Tobias';
-      })
-      .directive('myDialog', function() {
-        return {
-          restrict: 'E',
-          transclude: true,
-          templateUrl: 'my-dialog.html'
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsTransclusionDirective" ng-set-html="index.html-252" ng-eval-javascript="script.js-251"></div>
+
+</p>
 <p>What does this <code>transclude</code> option do, exactly? <code>transclude</code> makes the contents of a directive with
 this option have access to the scope <strong>outside</strong> of the directive rather than inside.</p>
 <p>To illustrate this, see the example below. Notice that we&#39;ve added a <code>link</code> function in <code>script.js</code>
 that redefines <code>name</code> as <code>Jeff</code>. What do you think the <code>{{name}}</code> binding will resolve to now?</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsTransclusionExample" source-edit-deps="angular.js script.js" source-edit-html="index.html-254 my-dialog.html" source-edit-css="" source-edit-js="script.js-253" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-254" ng-html-wrap="docsTransclusionExample angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-254">
-    <div ng-controller="Ctrl">
-      <my-dialog>Check out the contents, {{name}}!</my-dialog>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example86')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example86"
+      module="docsTransclusionExample">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsTransclusionExample&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.name = &#39;Tobias&#39;;&#10;  }])&#10;  .directive(&#39;myDialog&#39;, function() {&#10;    return {&#10;      restrict: &#39;E&#39;,&#10;      transclude: true,&#10;      scope: {},&#10;      templateUrl: &#39;my-dialog.html&#39;,&#10;      link: function (scope, element) {&#10;        scope.name = &#39;Jeff&#39;;&#10;      }&#10;    };&#10;  });</code></pre>
     </div>
-  </script>
-</div>
-<div class="tab-pane" title="my-dialog.html">
-<pre class="prettyprint linenums" ng-set-text="my-dialog.html"></pre>
-<script type="text/ng-template" id="my-dialog.html">
-    <div class="alert" ng-transclude>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;my-dialog&gt;Check out the contents, {{name}}!&lt;/my-dialog&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="my-dialog.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div class=&quot;alert&quot; ng-transclude&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example86/index.html" name="example-example86"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-253"></pre>
-<script type="text/ng-template" id="script.js-253">
-    angular.module('docsTransclusionExample', [])
-      .controller('Ctrl', function($scope) {
-        $scope.name = 'Tobias';
-      })
-      .directive('myDialog', function() {
-        return {
-          restrict: 'E',
-          transclude: true,
-          scope: {},
-          templateUrl: 'my-dialog.html',
-          link: function (scope, element) {
-            scope.name = 'Jeff';
-          }
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsTransclusionExample" ng-set-html="index.html-254" ng-eval-javascript="script.js-253"></div>
+
+</p>
 <p>Ordinarily, we would expect that <code>{{name}}</code> would be <code>Jeff</code>. However, we see in this example that
 the <code>{{name}}</code> binding is still <code>Tobias</code>.</p>
 <p>The <code>transclude</code> option changes the way scopes are nested. It makes it so that the <strong>contents</strong> of a
@@ -688,213 +672,148 @@ arbitrary content.
 
 <p>Next, we want to add buttons to this dialog box, and allow someone using the directive to bind their
 own behavior to it.</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsIsoFnBindExample" source-edit-deps="angular.js script.js" source-edit-html="index.html-256 my-dialog-close.html" source-edit-css="" source-edit-js="script.js-255" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-256" ng-html-wrap="docsIsoFnBindExample angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-256">
-    <div ng-controller="Ctrl">
-      <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog()">
-        Check out the contents, {{name}}!
-      </my-dialog>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example87')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example87"
+      module="docsIsoFnBindExample">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsIsoFnBindExample&#39;, [])&#10;  .controller(&#39;Controller&#39;, [&#39;$scope&#39;, &#39;$timeout&#39;, function($scope, $timeout) {&#10;    $scope.name = &#39;Tobias&#39;;&#10;    $scope.hideDialog = function () {&#10;      $scope.dialogIsHidden = true;&#10;      $timeout(function () {&#10;        $scope.dialogIsHidden = false;&#10;      }, 2000);&#10;    };&#10;  }])&#10;  .directive(&#39;myDialog&#39;, function() {&#10;    return {&#10;      restrict: &#39;E&#39;,&#10;      transclude: true,&#10;      scope: {&#10;        &#39;close&#39;: &#39;&amp;onClose&#39;&#10;      },&#10;      templateUrl: &#39;my-dialog-close.html&#39;&#10;    };&#10;  });</code></pre>
     </div>
-  </script>
-</div>
-<div class="tab-pane" title="my-dialog-close.html">
-<pre class="prettyprint linenums" ng-set-text="my-dialog-close.html"></pre>
-<script type="text/ng-template" id="my-dialog-close.html">
-    <div class="alert">
-      <a href class="close" ng-click="close()">&times;</a>
-      <div ng-transclude></div>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;my-dialog ng-hide=&quot;dialogIsHidden&quot; on-close=&quot;hideDialog()&quot;&gt;&#10;    Check out the contents, {{name}}!&#10;  &lt;/my-dialog&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
-  </script>
+  
+    <div class="runnable-example-file" 
+      name="my-dialog-close.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div class=&quot;alert&quot;&gt;&#10;  &lt;a href class=&quot;close&quot; ng-click=&quot;close()&quot;&gt;&times;&lt;/a&gt;&#10;  &lt;div ng-transclude&gt;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example87/index.html" name="example-example87"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-255"></pre>
-<script type="text/ng-template" id="script.js-255">
-    angular.module('docsIsoFnBindExample', [])
-      .controller('Ctrl', function($scope, $timeout) {
-        $scope.name = 'Tobias';
-        $scope.hideDialog = function () {
-          $scope.dialogIsHidden = true;
-          $timeout(function () {
-            $scope.dialogIsHidden = false;
-          }, 2000);
-        };
-      })
-      .directive('myDialog', function() {
-        return {
-          restrict: 'E',
-          transclude: true,
-          scope: {
-            'close': '&onClose'
-          },
-          templateUrl: 'my-dialog-close.html'
-        };
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsIsoFnBindExample" ng-set-html="index.html-256" ng-eval-javascript="script.js-255"></div>
+
+</p>
 <p>We want to run the function we pass by invoking it from the directive&#39;s scope, but have it run
-in the context of the scope where its registered.</p>
-<p>We saw earlier how to use <code>=prop</code> in the <code>scope</code> option, but in the above example, we&#39;re using
-<code>&amp;prop</code> instead. <code>&amp;</code> bindings expose a function to an isolated scope allowing the isolated scope
-to invoke it, but maintaining the original scope of the function. So when a user clicks the
-<code>x</code> in the dialog, it runs <code>Ctrl</code>&#39;s <code>close</code> function.</p>
+in the context of the scope where it&#39;s registered.</p>
+<p>We saw earlier how to use <code>=attr</code> in the <code>scope</code> option, but in the above example, we&#39;re using
+<code>&amp;attr</code> instead.  The <code>&amp;</code> binding allows a directive to trigger evaluation of an expression in
+the context of the original scope, at a specific time.  Any legal expression is allowed, including
+an expression which contains a function call.  Because of this, <code>&amp;</code> bindings are ideal for binding
+callback functions to directive behaviors.</p>
+<p>When the user clicks the <code>x</code> in the dialog, the directive&#39;s <code>close</code> function is called, thanks to
+<code>ng-click.</code>  This call to <code>close</code> on the isolated scope actually evaluates the expression
+<code>hideDialog()</code> in the context of the original scope, thus running <code>Controller</code>&#39;s <code>hideDialog</code>
+function.</p>
 <div class="alert alert-success">
-<strong>Best Practice:</strong> use <code>&amp;prop</code> in the <code>scope</code> option when you want your directive
+<strong>Best Practice:</strong> use <code>&amp;attr</code> in the <code>scope</code> option when you want your directive
 to expose an API for binding to behaviors.
 </div>
 
 
-<h4 id="creating-custom-directives_demo_creating-a-directive-that-adds-event-listeners">Creating a Directive that Adds Event Listeners</h4>
+<h3 id="creating-a-directive-that-adds-event-listeners">Creating a Directive that Adds Event Listeners</h3>
 <p>Previously, we used the <code>link</code> function to create a directive that manipulated its
 DOM elements. Building upon that example, let&#39;s make a directive that reacts to events on
 its elements.</p>
 <p>For instance, what if we wanted to create a directive that lets a user drag an
 element?</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="dragModule" source-edit-deps="angular.js script.js" source-edit-html="index.html-258" source-edit-css="" source-edit-js="script.js-257" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-258" ng-html-wrap="dragModule angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-258">
-    <span my-draggable>Drag ME</span>
-  </script>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example88')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example88"
+      module="dragModule">
+
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;dragModule&#39;, [])&#10;  .directive(&#39;myDraggable&#39;, [&#39;$document&#39;, function($document) {&#10;    return function(scope, element, attr) {&#10;      var startX = 0, startY = 0, x = 0, y = 0;&#10;&#10;      element.css({&#10;       position: &#39;relative&#39;,&#10;       border: &#39;1px solid red&#39;,&#10;       backgroundColor: &#39;lightgrey&#39;,&#10;       cursor: &#39;pointer&#39;&#10;      });&#10;&#10;      element.on(&#39;mousedown&#39;, function(event) {&#10;        // Prevent default dragging of selected content&#10;        event.preventDefault();&#10;        startX = event.pageX - x;&#10;        startY = event.pageY - y;&#10;        $document.on(&#39;mousemove&#39;, mousemove);&#10;        $document.on(&#39;mouseup&#39;, mouseup);&#10;      });&#10;&#10;      function mousemove(event) {&#10;        y = event.pageY - startY;&#10;        x = event.pageX - startX;&#10;        element.css({&#10;          top: y + &#39;px&#39;,&#10;          left:  x + &#39;px&#39;&#10;        });&#10;      }&#10;&#10;      function mouseup() {&#10;        $document.unbind(&#39;mousemove&#39;, mousemove);&#10;        $document.unbind(&#39;mouseup&#39;, mouseup);&#10;      }&#10;    };&#10;  }]);</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;span my-draggable&gt;Drag ME&lt;/span&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example88/index.html" name="example-example88"></iframe>
+  </div>
 </div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-257"></pre>
-<script type="text/ng-template" id="script.js-257">
-    angular.module('dragModule', []).
-      directive('myDraggable', function($document) {
-        return function(scope, element, attr) {
-          var startX = 0, startY = 0, x = 0, y = 0;
 
-          element.css({
-           position: 'relative',
-           border: '1px solid red',
-           backgroundColor: 'lightgrey',
-           cursor: 'pointer'
-          });
-
-          element.on('mousedown', function(event) {
-            // Prevent default dragging of selected content
-            event.preventDefault();
-            startX = event.pageX - x;
-            startY = event.pageY - y;
-            $document.on('mousemove', mousemove);
-            $document.on('mouseup', mouseup);
-          });
-
-          function mousemove(event) {
-            y = event.pageY - startY;
-            x = event.pageX - startX;
-            element.css({
-              top: y + 'px',
-              left:  x + 'px'
-            });
-          }
-
-          function mouseup() {
-            $document.unbind('mousemove', mousemove);
-            $document.unbind('mouseup', mouseup);
-          }
-        }
-      });
-  </script>
-</div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="dragModule" ng-set-html="index.html-258" ng-eval-javascript="script.js-257"></div>
-<h4 id="creating-custom-directives_demo_creating-directives-that-communicate">Creating Directives that Communicate</h4>
+</p>
+<h3 id="creating-directives-that-communicate">Creating Directives that Communicate</h3>
 <p>You can compose any directives by using them within templates.</p>
 <p>Sometimes, you want a component that&#39;s built from a combination of directives.</p>
 <p>Imagine you want to have a container with tabs in which the contents of the container correspond
 to which tab is active.</p>
-<h3 id="creating-custom-directives_source">Source</h3>
-<div source-edit="docsTabsExample" source-edit-deps="angular.js script.js" source-edit-html="index.html-260 my-tabs.html my-pane.html" source-edit-css="" source-edit-js="script.js-259" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
-<div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-260" ng-html-wrap="docsTabsExample angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-260">
-    <my-tabs>
-      <my-pane title="Hello">
-        <h5 id="creating-custom-directives_source_hello">Hello</h5>
-        <p>Lorem ipsum dolor sit amet</p>
-      </my-pane>
-      <my-pane title="World">
-        <h5 id="creating-custom-directives_source_world">World</h5>
-        <em>Mauris elementum elementum enim at suscipit.</em>
-        <p><a href ng-click="i = i + 1">counter: {{i || 0}}</a></p>
-      </my-pane>
-    </my-tabs>
-  </script>
-</div>
-<div class="tab-pane" title="my-tabs.html">
-<pre class="prettyprint linenums" ng-set-text="my-tabs.html"></pre>
-<script type="text/ng-template" id="my-tabs.html">
-    <div class="tabbable">
-      <ul class="nav nav-tabs">
-        <li ng-repeat="pane in panes" ng-class="{active:pane.selected}">
-          <a href="" ng-click="select(pane)">{{pane.title}}</a>
-        </li>
-      </ul>
-      <div class="tab-content" ng-transclude></div>
-    </div>
-  </script>
-</div>
-<div class="tab-pane" title="my-pane.html">
-<pre class="prettyprint linenums" ng-set-text="my-pane.html"></pre>
-<script type="text/ng-template" id="my-pane.html">
-    <div class="tab-pane" ng-show="selected" ng-transclude>
-    </div>
-  </script>
-</div>
-<div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-259"></pre>
-<script type="text/ng-template" id="script.js-259">
-    angular.module('docsTabsExample', [])
-      .directive('myTabs', function() {
-        return {
-          restrict: 'E',
-          transclude: true,
-          scope: {},
-          controller: function($scope) {
-            var panes = $scope.panes = [];
+<p>
 
-            $scope.select = function(pane) {
-              angular.forEach(panes, function(pane) {
-                pane.selected = false;
-              });
-              pane.selected = true;
-            };
+<div>
+  <a ng-click="openPlunkr('examples/example-example89')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-example89"
+      module="docsTabsExample">
 
-            this.addPane = function(pane) {
-              if (panes.length == 0) {
-                $scope.select(pane);
-              }
-              panes.push(pane);
-            };
-          },
-          templateUrl: 'my-tabs.html'
-        };
-      })
-      .directive('myPane', function() {
-        return {
-          require: '^myTabs',
-          restrict: 'E',
-          transclude: true,
-          scope: {
-            title: '@'
-          },
-          link: function(scope, element, attrs, tabsCtrl) {
-            tabsCtrl.addPane(scope);
-          },
-          templateUrl: 'my-pane.html'
-        };
-      });
-  </script>
+   
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;docsTabsExample&#39;, [])&#10;  .directive(&#39;myTabs&#39;, function() {&#10;    return {&#10;      restrict: &#39;E&#39;,&#10;      transclude: true,&#10;      scope: {},&#10;      controller: function($scope) {&#10;        var panes = $scope.panes = [];&#10;&#10;        $scope.select = function(pane) {&#10;          angular.forEach(panes, function(pane) {&#10;            pane.selected = false;&#10;          });&#10;          pane.selected = true;&#10;        };&#10;&#10;        this.addPane = function(pane) {&#10;          if (panes.length === 0) {&#10;            $scope.select(pane);&#10;          }&#10;          panes.push(pane);&#10;        };&#10;      },&#10;      templateUrl: &#39;my-tabs.html&#39;&#10;    };&#10;  })&#10;  .directive(&#39;myPane&#39;, function() {&#10;    return {&#10;      require: &#39;^myTabs&#39;,&#10;      restrict: &#39;E&#39;,&#10;      transclude: true,&#10;      scope: {&#10;        title: &#39;@&#39;&#10;      },&#10;      link: function(scope, element, attrs, tabsCtrl) {&#10;        tabsCtrl.addPane(scope);&#10;      },&#10;      templateUrl: &#39;my-pane.html&#39;&#10;    };&#10;  });</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;my-tabs&gt;&#10;  &lt;my-pane title=&quot;Hello&quot;&gt;&#10;    &lt;h4&gt;Hello&lt;/h4&gt;&#10;    &lt;p&gt;Lorem ipsum dolor sit amet&lt;/p&gt;&#10;  &lt;/my-pane&gt;&#10;  &lt;my-pane title=&quot;World&quot;&gt;&#10;    &lt;h4&gt;World&lt;/h4&gt;&#10;    &lt;em&gt;Mauris elementum elementum enim at suscipit.&lt;/em&gt;&#10;    &lt;p&gt;&lt;a href ng-click=&quot;i = i + 1&quot;&gt;counter: {{i || 0}}&lt;/a&gt;&lt;/p&gt;&#10;  &lt;/my-pane&gt;&#10;&lt;/my-tabs&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="my-tabs.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div class=&quot;tabbable&quot;&gt;&#10;  &lt;ul class=&quot;nav nav-tabs&quot;&gt;&#10;    &lt;li ng-repeat=&quot;pane in panes&quot; ng-class=&quot;{active:pane.selected}&quot;&gt;&#10;      &lt;a href=&quot;&quot; ng-click=&quot;select(pane)&quot;&gt;{{pane.title}}&lt;/a&gt;&#10;    &lt;/li&gt;&#10;  &lt;/ul&gt;&#10;  &lt;div class=&quot;tab-content&quot; ng-transclude&gt;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="my-pane.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div class=&quot;tab-pane&quot; ng-show=&quot;selected&quot; ng-transclude&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example89/index.html" name="example-example89"></iframe>
+  </div>
 </div>
-</div><h3 id="creating-custom-directives_demo">Demo</h3>
-<div class="well doc-example-live animate-container" ng-embed-app="docsTabsExample" ng-set-html="index.html-260" ng-eval-javascript="script.js-259"></div>
+
+</p>
 <p>The <code>myPane</code> directive has a <code>require</code> option with value <code>^myTabs</code>. When a directive uses this
 option, <code>$compile</code> will throw an error unless the specified controller is found. The <code>^</code> prefix
 means that this directive searches for the controller on its parents (without the <code>^</code> prefix, the
@@ -902,6 +821,10 @@ directive would look for the controller on just its own element).</p>
 <p>So where does this <code>myTabs</code> controller come from? Directives can specify controllers using
 the unsurprisingly named <code>controller</code> option. As you can see, the <code>myTabs</code> directive uses this
 option. Just like <code>ngController</code>, this option attaches a controller to the template of the directive.</p>
+<p>If it is necessary to reference the controller or any functions bound to the controller&#39;s scope in
+the template, you can use the option <code>controllerAs</code> to specify the name of the controller as an alias.
+The directive needs to define a scope for this configuration to be used. This is particularly useful
+in the case when the directive is used as a component.</p>
 <p>Looking back at <code>myPane</code>&#39;s definition, notice the last argument in its <code>link</code> function: <code>tabsCtrl</code>.
 When a directive requires a controller, it receives that controller as the fourth argument of its
 <code>link</code> function. Taking advantage of this, <code>myPane</code> can call the <code>addPane</code> function of <code>myTabs</code>.</p>
@@ -913,11 +836,12 @@ controllers using <code>require</code>.</p>
 Otherwise use <code>link</code>.
 </div>
 
-<h4 id="creating-custom-directives_demo_summary">Summary</h4>
+<h3 id="summary">Summary</h3>
 <p>Here we&#39;ve seen the main use cases for directives. Each of these samples acts as a good starting
 point for creating your own directives.</p>
 <p>You might also be interested in an in-depth explanation of the compilation process that&#39;s
 available in the <a href="guide/compiler">compiler guide</a>.</p>
-<p>The <a href="api/ng.$compile"><code><code>$compile</code> API</code></a> page has a comprehensive list of directive options for
+<p>The <a href="api/ng/service/$compile"><code>$compile</code> API</a> page has a comprehensive list of directive options for
 reference.</p>
-</div></div>
+
+

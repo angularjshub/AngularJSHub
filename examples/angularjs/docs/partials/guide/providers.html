@@ -1,11 +1,10 @@
-<a href="http://github.com/angular/angular.js/edit/master/docs/content/guide/providers.ngdoc" class="improve-docs btn btn-primary"><i class="icon-edit"> </i> Improve this doc</a><h1><code ng:non-bindable=""></code>
-<div><span class="hint"></span>
-</div>
-</h1>
-<div><div class="developer-guide-page developer-guide-providers-page"><h2 id="providers">Providers</h2>
+<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/providers.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+
+
+<h1 id="providers">Providers</h1>
 <p>Each web application you build is composed of objects that collaborate to get stuff done. These
 objects need to be instantiated and wired together for the app to work. In Angular apps most of
-these objects are instantiated and wired together automatically by the <a href="api/AUTO.$injector"><code>injector service</code></a>.</p>
+these objects are instantiated and wired together automatically by the <a href="api/auto/service/$injector">injector service</a>.</p>
 <p>The injector creates two types of objects, <strong>services</strong> and <strong>specialized objects</strong>.</p>
 <p>Services are objects whose API is defined by the developer writing the service.</p>
 <p>Specialized objects conform to a specific Angular framework API. These objects are one of
@@ -18,18 +17,18 @@ recipe.</p>
 <p>Let&#39;s take a look at the different scenarios for creating and using services via various recipe
 types. We&#39;ll start with the simplest case possible where various places in your code need a shared
 string and we&#39;ll accomplish this via Value recipe.</p>
-<h3 id="providers_note-a-word-on-modules">Note:  A Word on Modules</h3>
+<h2 id="note-a-word-on-modules">Note:  A Word on Modules</h2>
 <p>In order for the injector to know how to create and wire together all of these objects, it needs
 a registry of &quot;recipes&quot;. Each recipe has an identifier of the object and the description of how to
 create this object.</p>
-<p>Each recipe belongs to an <a href="api/angular.Module"><code>Angular module</code></a>. An Angular module is a bag
+<p>Each recipe belongs to an <a href="api/ng/type/angular.Module">Angular module</a>. An Angular module is a bag
 that holds one or more recipes. And since manually keeping track of module dependencies is no fun,
 a module can contain information about dependencies on other modules as well.</p>
 <p>When an Angular application starts with a given application module, Angular creates a new instance
 of injector, which in turn creates a registry of recipes as a union of all recipes defined in the
 core &quot;ng&quot; module, application module and its dependencies. The injector then consults the recipe
 registry when it needs to create an object for your application.</p>
-<h3 id="providers_value-recipe">Value Recipe</h3>
+<h2 id="value-recipe">Value Recipe</h2>
 <p>Let&#39;s say that we want to have a very simple service called &quot;clientId&quot; that provides a string
 representing an authentication id used for some remote API. You would define it like this:</p>
 <pre><code class="lang-javascript">var myApp = angular.module(&#39;myApp&#39;, []);
@@ -48,9 +47,9 @@ contains a &quot;recipe&quot; for constructing the <code>clientId</code> service
 <p>In this example, we&#39;ve used the Value recipe to define the value to provide when <code>DemoController</code>
 asks for the service with id &quot;clientId&quot;.</p>
 <p>On to more complex examples!</p>
-<h3 id="providers_factory-recipe">Factory Recipe</h3>
+<h2 id="factory-recipe">Factory Recipe</h2>
 <p>The Value recipe is very simple to write, but lacks some important features we often need when
-creating services.  Let&#39;s now look at the Value recipe&#39;s more powerful sibling, the Factory.The
+creating services.  Let&#39;s now look at the Value recipe&#39;s more powerful sibling, the Factory. The
 Factory recipe adds the following abilities:</p>
 <ul>
 <li>ability to use other services (have dependencies)</li>
@@ -62,7 +61,7 @@ are dependencies on other services). The return value of this function is the se
 created by this recipe.</p>
 <p>Note: All services in Angular are singletons. That means that the injector uses each recipe at most
 once to create the object. The injector then caches the reference for all future needs.</p>
-<p>Since Factory is more powerful version of Value recipe, you can construct the same service with it.
+<p>Since Factory is more a powerful version of the Value recipe, you can construct the same service with it.
 Using our previous <code>clientId</code> Value recipe example, we can rewrite it as a Factory recipe like
 this:</p>
 <pre><code class="lang-javascript">myApp.factory(&#39;clientId&#39;, function clientIdFactory() {
@@ -71,8 +70,8 @@ this:</p>
 <p>But given that the token is just a string literal, sticking with the Value recipe is still more
 appropriate as it makes the code easier to follow.</p>
 <p>Let&#39;s say, however, that we would also like to create a service that computes a token used for
-authentication against a remote API. This token will be called &#39;apiToken&#39; and will be computed
-based on the <code>clientId</code> value and a secret stored in browser&#39;s local storage:</p>
+authentication against a remote API. This token will be called <code>apiToken</code> and will be computed
+based on the <code>clientId</code> value and a secret stored in the browser&#39;s local storage:</p>
 <pre><code class="lang-javascript">myApp.factory(&#39;apiToken&#39;, [&#39;clientId&#39;, function apiTokenFactory(clientId) {
   var encrypt = function(data1, data2) {
     // NSA-proof encryption algorithm:
@@ -85,21 +84,21 @@ based on the <code>clientId</code> value and a secret stored in browser&#39;s lo
   return apiToken;
 }]);</code></pre>
 <p>In the code above, we see how the <code>apiToken</code> service is defined via the Factory recipe that depends
-on <code>clientId</code> service. The factory service then uses NSA-proof encryption to produce an authentication
+on the <code>clientId</code> service. The factory service then uses NSA-proof encryption to produce an authentication
 token.</p>
-<p>Note: It is a best practice to name the factory functions as &quot;<serviceId>Factory&quot;
-(e.g. apiTokenFactory). While this names are not required, they help when navigating the code base
+<p>Note: It is best practice to name the factory functions as <code>&lt;serviceId&gt;Factory</code>
+(e.g. apiTokenFactory). While this naming convention is not required, it helps when navigating the code base
 or looking at stack traces in the debugger.</p>
 <p>Just like with Value recipe, Factory recipe can create a service of any type, whether it be a
 primitive, object literal, function, or even an instance of a custom type.</p>
-<h3 id="providers_service-recipe">Service Recipe</h3>
+<h2 id="service-recipe">Service Recipe</h2>
 <p>JavaScript developers often use custom types to write object-oriented code. Let&#39;s explore how we
-could launch a unicorn into the space via our <code>unicornLauncher</code> service that is an instance of
+could launch a unicorn into space via our <code>unicornLauncher</code> service which is an instance of a
 custom type:</p>
 <pre><code class="lang-javascript">function UnicornLauncher(apiToken) {
 
   this.launchedCount = 0;
-  this.launch() {
+  this.launch = function() {
     // make a request to the remote api and include the apiToken
     ...
     this.launchedCount++;
@@ -121,9 +120,9 @@ above with a Service recipe like this:</p>
 <pre><code class="lang-javascript">myApp.service(&#39;unicornLauncher&#39;, [&quot;apiToken&quot;, UnicornLauncher]);</code></pre>
 <p>Much simpler!</p>
 <p>Note: Yes, we have called one of our service recipes &#39;Service&#39;. We regret this and know that we&#39;ll
-be somehow punished for our mis-deed. It&#39;s like we named one of our offspring &#39;Children&#39;. Boy,
+be somehow punished for our mis-deed. It&#39;s like we named one of our offspring &#39;Child&#39;. Boy,
 that would mess with the teachers.</p>
-<h3 id="providers_provider-recipe">Provider Recipe</h3>
+<h2 id="provider-recipe">Provider Recipe</h2>
 <p>There are two more recipe types left to cover. They are both fairly specialized and are used
 infrequently. As already mentioned in the intro, the Provider recipe is the core recipe type and
 all the other recipe types are just syntactic sugar on top of it. It is the most verbose recipe
@@ -140,7 +139,7 @@ launcher shoots unicorns into space without any protective shielding. But on som
 atmosphere is so thick that we must wrap every unicorn in tinfoil before sending it on its
 intergalactic trip, otherwise they would burn while passing through the atmosphere. It would then
 be great if we could configure the launcher to use the tinfoil shielding for each launch in apps
-that need it. We can make it configurable it like so:</p>
+that need it. We can make it configurable like so:</p>
 <pre><code class="lang-javascript">myApp.provider(&#39;unicornLauncher&#39;, function UnicornLauncherProvider() {
   var useTinfoilShielding = false;
 
@@ -168,7 +167,7 @@ instantiates all providers. We call this the configuration phase of the applicat
 During this phase services aren&#39;t accessible because they haven&#39;t been created yet.</p>
 <p>Once the configuration phase is over, interaction with providers is disallowed and the process of
 creating services starts. We call this part of the application life-cycle the run phase.</p>
-<h3 id="providers_constant-recipe">Constant Recipe</h3>
+<h2 id="constant-recipe">Constant Recipe</h2>
 <p>We&#39;ve just learned how Angular splits the life-cycle into configuration phase and run phase and how
 you can provide configuration to your application via the config function. Since the config
 function runs in the configuration phase when no services are available, it doesn&#39;t have access
@@ -199,7 +198,7 @@ can also use it in our controller and template:</p>
    Planet Name: {{demo.planetName}}
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-<h3 id="providers_special-purpose-objects">Special Purpose Objects</h3>
+<h2 id="special-purpose-objects">Special Purpose Objects</h2>
 <p>Earlier we mentioned that we also have special purpose objects that are different from services.
 These objects extend the framework as plugins and therefore must implement interfaces specified by
 Angular. These interfaces are Controller, Directive, Filter and Animation.</p>
@@ -234,7 +233,7 @@ take a look at the <code>DemoController</code>, created in one of the early exam
 DemoController (in our simple app it&#39;s just once). So unlike services, controllers are not
 singletons. The constructor is called with all the requested services, in our case the <code>clientId</code>
 service.</p>
-<h3 id="providers_conclusion">Conclusion</h3>
+<h2 id="conclusion">Conclusion</h2>
 <p>To wrap it up, let&#39;s summarize the most important points:</p>
 <ul>
 <li>The injector uses recipes to create two types of objects: services and special purpose objects</li>
@@ -298,4 +297,5 @@ piece of code that needs global configuration.</li>
 <p>* at the cost of eager initialization by using <code>new</code> operator directly</p>
 <p>** the service object is not available during the config phase, but the provider instance is
 (see the <code>unicornLauncherProvider</code> example above).</p>
-</div></div>
+
+
