@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../../../angularjs/angular.js"></script>
+  <script src="../../../angularjs/i18n/angular-locale_en-us.js"></script>
+  <script src="../script.js"></script>
+</head>
+
+<body ng-app="mainModule">
+  <div ng-controller="mainController">
+    <h3>English (USA)</h3>
+    <strong>Current locale ID:</strong> {{localeId}}<br />
+    <strong>The date is</strong> {{currentDate | date:"fullDate"}}<br />
+    <strong>This is a number:</strong> {{1234.56 | number}}<br />
+    <br />
+    <a href="../">BACK</a>
+  </div>
+</body>
+</html>
