@@ -1,0 +1,209 @@
+*
+{
+  box-sizing: border-box;
+}
+
+.box
+{
+  width: 100px;
+  height: 100px;
+  background-color: lightskyblue;
+  display: block;
+}
+
+.inner-box
+{
+  margin: 10px;
+  width: 80px;
+  height: 80px;
+  background-color: lightcoral;
+  display: block;
+}
+
+.invisible-box
+{
+  width: 100px;
+  height: 100px;
+  background-color: lightcoral;
+  display: block;
+  opacity: 0;
+}
+
+.empty-box
+{
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ffffff;
+  display: block;
+}
+
+.custom-class
+{
+  opacity: 1;
+}
+
+.box-border
+{
+  border: 1px solid #808080;
+}
+
+.box-fill
+{
+  background: lightgreen;
+}
+
+.animated-element.ng-enter,
+.animated-element.ng-leave,
+.animated-element.ng-move,
+.animated-element.custom-class-add,
+.animated-element.custom-class-remove,
+.animated-element.box-border-add,
+.animated-element.box-border-remove,
+.animated-element.box-fill-add,
+.animated-element.box-fill-remove
+{
+  -webkit-transition: 1.5s linear all;
+  transition: 1.5s linear all;
+}
+
+.animated-element.ng-enter { opacity: 0; }
+.animated-element.ng-enter.ng-enter-active { opacity: 1; }
+
+.animated-element.ng-leave { opacity: 1; }
+.animated-element.ng-leave.ng-leave-active { opacity: 0; }
+
+.animated-element.ng-move { opacity: 0; }
+.animated-element.ng-move.ng-move-active { opacity: 1; }
+.animated-element.ng-move-stagger
+{
+  /* Set a 400ms delay between each successive move animation */
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+
+  /*
+   * In case the stagger doesn't work then these two values
+   * must be set to 0 to avoid an accidental CSS inheritance.
+  */
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+}
+
+.animated-element.custom-class-add { opacity: 0; }
+.animated-element.custom-class-add.custom-class-add-active { opacity: 1; }
+
+.animated-element.custom-class-remove { opacity: 1; }
+.animated-element.custom-class-remove.custom-class-remove-active { opacity: 0; }
+
+.animated-element.box-border-add { border-color: #ffffff; }
+.animated-element.box-border-add.box-border-add-active { border-color: #808080; }
+.animated-element.box-border-remove { border-color: #808080; }
+.animated-element.box-border-remove.box-border-remove-active { border-color: #ffffff; }
+
+.animated-element.box-fill-add { background: none; }
+.animated-element.box-fill-add.box-fill-add-active { background: lightgreen; }
+.animated-element.box-fill-remove { background: lightgreen; }
+.animated-element.box-fill-remove.box-fill-remove-active { background: none; }
+
+@-webkit-keyframes blinkAndGrow
+{
+  from
+  {
+    background-color: lightcoral;
+  }
+  25%, 75%
+  {
+    transform: scale(1.1);
+    background-color: red;
+  }
+  50%
+  {
+    transform: scale(1.0);
+    background-color: lightcoral;
+  }
+  to
+  {
+    background-color: lightcoral;
+  }
+}
+
+@keyframes blinkAndGrow
+{
+  from
+  {
+    background-color: lightcoral;
+  }
+  25%, 75%
+  {
+    transform: scale(1.1);
+    background-color: red;
+  }
+  50%
+  {
+    transform: scale(1.0);
+    background-color: lightcoral;
+  }
+  to
+  {
+    background-color: lightcoral;
+  }
+}
+
+@-webkit-keyframes shrinkAndDisappear
+{
+  from
+  {
+    opacity: 1;
+  }
+  70%
+  {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  to
+  {
+    transform: scale(0.0);
+    opacity: 0;
+  }
+}
+
+@keyframes shrinkAndDisappear
+{
+  from
+  {
+    opacity: 1;
+  }
+  70%
+  {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  to
+  {
+    transform: scale(0.0);
+    opacity: 0;
+  }
+}
+
+.custom-inline-animation-1
+{
+  -webkit-transition: 1.0s linear all;
+  transition: 1.0s linear all;
+}
+
+.ng-inline-animate
+{
+  -webkit-animation: blinkAndGrow 1.5s linear;
+  animation: blinkAndGrow 1.5s linear;
+}
+
+.custom-inline-animation-2
+{
+  -webkit-animation: shrinkAndDisappear 0.8s linear;
+  animation: shrinkAndDisappear 0.8s linear;
+}
+
+.element-glow-animation
+{
+  -webkit-transition: 0.6s linear all;
+  transition: 0.6s linear all;
+}
