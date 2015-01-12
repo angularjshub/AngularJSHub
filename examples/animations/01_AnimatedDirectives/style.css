@@ -1,0 +1,156 @@
+*
+{
+  box-sizing: border-box;
+}
+
+.box
+{
+  width: 100px;
+  height: 100px;
+  background-color: lightskyblue;
+  display: block;
+}
+
+.invisible-box
+{
+  width: 100px;
+  height: 100px;
+  background-color: lightcoral;
+  display: block;
+  opacity: 0;
+}
+
+.custom-class
+{
+  opacity: 1;
+}
+
+.animated-element.ng-enter,
+.animated-element.ng-leave,
+.animated-element.ng-move,
+.animated-element.custom-class-add,
+.animated-element.custom-class-remove
+{
+  -webkit-transition: 1.5s linear all;
+  transition: 1.5s linear all;
+}
+
+.animated-element.ng-enter { opacity: 0; }
+.animated-element.ng-enter.ng-enter-active { opacity: 1; }
+
+.animated-element.ng-leave { opacity: 1; }
+.animated-element.ng-leave.ng-leave-active { opacity: 0; }
+
+.animated-element.ng-move { opacity: 0; }
+.animated-element.ng-move.ng-move-active { opacity: 1; }
+.animated-element.ng-move-stagger
+{
+  /* Set a 400ms delay between each successive move animation */
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+
+  /*
+   * In case the stagger doesn't work then these two values
+   * must be set to 0 to avoid an accidental CSS inheritance.
+  */
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+}
+
+.animated-element.custom-class-add { opacity: 0; }
+.animated-element.custom-class-add.custom-class-add-active { opacity: 1; }
+
+.animated-element.custom-class-remove { opacity: 1; }
+.animated-element.custom-class-remove.custom-class-remove-active { opacity: 0; }
+
+@-webkit-keyframes blinkAndGrow
+{
+  from
+  {
+    background-color: lightskyblue;
+  }
+  25%, 75%
+  {
+    transform: scale(1.1);
+    background-color: blue;
+  }
+  50%
+  {
+    transform: scale(1.0);
+    background-color: lightskyblue;
+  }
+  to
+  {
+    background-color: lightskyblue;
+  }
+}
+
+@keyframes blinkAndGrow
+{
+  from
+  {
+    background-color: lightskyblue;
+  }
+  25%, 75%
+  {
+    transform: scale(1.1);
+    background-color: blue;
+  }
+  50%
+  {
+    transform: scale(1.0);
+    background-color: lightskyblue;
+  }
+  to
+  {
+    background-color: lightskyblue;
+  }
+}
+
+@-webkit-keyframes shrinkAndDisappear
+{
+  from
+  {
+    opacity: 1;
+  }
+  70%
+  {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  to
+  {
+    transform: scale(0.0);
+    opacity: 0;
+  }
+}
+
+@keyframes shrinkAndDisappear
+{
+  from
+  {
+    opacity: 1;
+  }
+  70%
+  {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  to
+  {
+    transform: scale(0.0);
+    opacity: 0;
+  }
+}
+
+.animated-element-with-keyframes.ng-enter
+{
+  -webkit-animation: blinkAndGrow 1.0s linear;
+  animation: blinkAndGrow 1.0s linear;
+}
+
+.animated-element-with-keyframes.ng-leave
+{
+  -webkit-animation: shrinkAndDisappear 0.8s linear;
+  animation: shrinkAndDisappear 0.8s linear;
+}

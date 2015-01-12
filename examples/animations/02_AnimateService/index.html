@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../angularjs-1.3.x/angular.js"></script>
+  <script src="../../angularjs-1.3.x/angular-animate.js"></script>
+  <script src="script.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-app="mainModule" ng-controller="mainController">
+  <h3>1. Enter and Leave</h3>
+  <button type="button" ng-click="onAddSquareClick(false)">Add the square as a child (Enter)</button><br />
+  <button type="button" ng-click="onAddSquareClick(true)">Add the square as a sibling (Enter)</button><br />
+  <button type="button" ng-click="onRemoveSquareClick()">Remove the square (Leave)</button><br />
+  <br />
+  <strong>Enter animation state:</strong> {{enterAnimationStateBox1}}<br />
+  <strong>Leave animation state:</strong> {{leaveAnimationStateBox1}}<br />
+  <br />
+  <div id="box1Parent" class="box"></div>
+  <br />
+  <h3>2. Move</h3>
+  <button type="button" ng-click="onMoveSquaresClick()">Move the squares</button><br />
+  <br />
+  <strong>Move animation state:</strong> {{moveAnimationState}}<br />
+  <br />
+  <span id="moveLeftmostElement"></span>
+  <div id="blueBox" class="box animated-element" style="background-color: lightskyblue; display: inline-block; margin-left: 5px; margin-right: 5px;"></div>
+  <div id="redBox" class="box animated-element" style="background-color: lightcoral; display: inline-block; margin-left: 5px; margin-right: 5px;"></div>
+  <div id="greenBox" class="box animated-element" style="background-color: lightgreen; display: inline-block; margin-left: 5px; margin-right: 5px;"></div>
+  <br />
+  <h3>3. Add Class, Remove Class, Set Class</h3>
+  <button type="button" ng-click="onAddClassClick()">Add class</button><br />
+  <button type="button" ng-click="onRemoveClassClick()">Remove class</button><br />
+  <br />
+  <strong>Add class animation state:</strong> {{addClassAnimationStateBox2}}<br />
+  <strong>Remove class animation state:</strong> {{removeClassAnimationStateBox2}}<br />
+  <br />
+  <div id="box2" class="invisible-box animated-element"></div>
+  <br />
+  <button type="button" ng-click="onSetClassClick()">Set class</button><br />
+  <br />
+  <strong>Set class animation state:</strong> {{setClassAnimationStateBox3}}<br />
+  <br />
+  <div id="box3" class="empty-box animated-element box-fill"></div>
+  <br />
+  <h3>4. Animate and Cancel</h3>
+  <br />
+  <strong>NOTE:</strong> this point doesn't work properly on Firefox due to this bug https://bugzilla.mozilla.org/show_bug.cgi?id=830056<br />
+  <br />
+  <button type="button" ng-click="onStartLongAnimationClick()">Start long animation</button><br />
+  <button type="button" ng-click="onCancelLongAnimationStepClick()">Cancel current long animation step</button><br />
+  <br />
+  <strong>Long animation state:</strong> {{longAnimationStateBox4}}<br />
+  <br />
+  <div id="box4" class="invisible-box"></div>
+  <br />
+  <h3>5. Enable/Disable animations</h3>
+  <label>Enable animations:
+    <input id="enableAnimationsCheck"
+           type="checkbox"
+           ng-model="areAnimationsEnabled"
+           ng-change="enableDisableAnimations(areAnimationsEnabled)" />
+  </label><br />
+  <br />
+  <h3>6. Custom animated directive</h3>
+  <label>Enable glow: <input type="checkbox" ng-model="enableGlow" /></label><br />
+  <br />
+  <div class="box" element-glow="enableGlow"></div>
+</div>
+</body>
+</html>
